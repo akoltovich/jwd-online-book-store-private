@@ -24,29 +24,82 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-Registration page
+<%--<form method="post">--%>
+<%--    Email:--%>
+<%--    <input type="email" name="login">--%>
+<%--    <br>--%>
+<%--    Password:--%>
+<%--    <input type="password" name="password">--%>
+<%--    <br>--%>
+<%--    First name:--%>
+<%--    <input type="text" name="first_name">--%>
+<%--    <br>--%>
+<%--    Last name:--%>
+<%--    <input type="text" name="last_name">--%>
+<%--    <br>--%>
+<%--    Role:--%>
+<%--    <input type="radio" name="role_id" value="1" checked> Admin--%>
+<%--    <input type="radio" name="role_id" value="2"> User--%>
+<%--    <br>--%>
+<%--    <input type="submit">--%>
 <form method="post">
-    <input type="hidden" name="command" value="registration">
-    Login:
-    <input type="email" name="login">
-    <br>
-    Password:
-    <input type="password" name="password">
-    <br>
-    First name:
-    <input type="text" name="first_name">
-    <br>
-    Last name:
-    <input type="text" name="last_name">
-    Role id:
-    <input type="number" name="role_id">
-    <br>
-    <%--    <a href="home?command=user_page">--%>
-    <input type="submit">
-    <%--    </a>--%>
+    <div class="form-group row">
+        <label for="Email" class="col-sm-2 col-form-label">Email address</label>
+        <div class="col-sm-5">
+            <input type="email" class="form-control" id="Email" name="login" aria-describedby="emailHelp"
+                   placeholder="Enter email">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Password" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-5">
+            <input type="password" class="form-control" id="Password1" name="password" placeholder="Enter password">
+            <small id="Password" class="form-text text-muted">Password must contain eight characters, at least one
+                letter and one number</small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="FirstName" class="col-sm-2 col-form-label">First name</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="firstName" name="first_name" aria-describedby="Name"
+                   placeholder="Enter first name">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="LastName" class="col-sm-2 col-form-label">Last name</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="lastName" name="last_name" aria-describedby="Last"
+                   placeholder="Enter last name">
+        </div>
+        <fieldset class="form-group row">
+            <div class="row">
+                <legend class="col-form-label col-sm-2 pt-0">Role</legend>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="role_id" id="gridRadios1" value="1"
+                               checked>
+                        <label class="form-check-label" for="gridRadios1">
+                            Admin
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="role_id" id="gridRadios2" value="2">
+                        <label class="form-check-label" for="gridRadios2">
+                            User
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Sign up</button>
+            </div>
+        </div>
+    </div>
 </form>
-<%--<a href="home?command=user_page">--%>
-<%--    <button type="submit" formmethod="post">Sign up!</button>--%>
-<%--</a>--%>
+<%--        <button type="submit" class="btn btn-primary">Sign up!</button>--%>
+<%--</form>--%>
+<%--</form>--%>
 </body>
 </html>

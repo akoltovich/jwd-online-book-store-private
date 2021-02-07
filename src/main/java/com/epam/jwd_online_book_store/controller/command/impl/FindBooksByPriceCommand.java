@@ -24,12 +24,26 @@ public class FindBooksByPriceCommand implements Command {
         UserService service = UserService.getInstance();
         String from = requestContext.getParameter("from");
         String to = requestContext.getParameter("to");
+        double fr;
+        double t;
         try {
-            List<Book> books = service.findBooksByPrice(Double.parseDouble(from), Double.parseDouble(to));
-            requestContext.setAttribute("books", books);
-        } catch (BookException e) {
-            e.printStackTrace();
+            fr = Double.parseDouble(from);
+            t = Double.parseDouble(to);
+        } catch (NumberFormatException e) {
+            fr = 0;
+            t = 0;
         }
-        return BOOKS_BY_PRICE_REDIRECT;
+//        try {
+            List<Book> books = service.findBooksByPrice(fr, t);
+        if (!books.isEmpty()) {
+            requestContext.setAttribute("books", books);
+        } else {
+            String empty = "Sorry, we don't have books with this price";
+            requestContext.setAttribute("empt", empty);
+        }
+//        } catch (BookException e) {
+//            e.printStackTrace();
+//        }
+        return BOOKS_BY_PRICE;
     }
 }

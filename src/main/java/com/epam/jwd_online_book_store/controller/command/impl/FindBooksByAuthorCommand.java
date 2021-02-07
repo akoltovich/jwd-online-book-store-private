@@ -22,12 +22,17 @@ public class FindBooksByAuthorCommand implements Command {
         }
         UserService service = UserService.getInstance();
         String author = requestContext.getParameter("author");
-        try {
+//        try {
             List<Book> books = service.findBooksByAuthor(author);
+        if (!books.isEmpty()) {
             requestContext.setAttribute("books", books);
-        } catch (BookException e) {
-            e.printStackTrace();
+        } else {
+            String empty = "Sorry, we don't have books of this author";
+            requestContext.setAttribute("empt", empty);
         }
-        return BOOKS_BY_AUTHOR_REDIRECT;
+//        } catch (BookException e) {
+//            e.printStackTrace();
+//        }
+        return BOOKS_BY_AUTHOR;
     }
 }

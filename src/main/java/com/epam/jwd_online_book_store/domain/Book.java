@@ -17,12 +17,11 @@ public class Book {
     public Book() {
     }
 
-    public Book(String name, String author, Date dateOfWriting, double price, double pricePerDay, int quantity, String genre, String preview) {
+    public Book(String name, String author, Date dateOfWriting, double price, int quantity, String preview, String genre) {
         this.name = name;
         this.author = author;
         this.dateOfWriting = dateOfWriting;
         this.price = price;
-        this.pricePerDay = pricePerDay;
         this.quantity = quantity;
         this.genre = genre;
         this.preview = preview;

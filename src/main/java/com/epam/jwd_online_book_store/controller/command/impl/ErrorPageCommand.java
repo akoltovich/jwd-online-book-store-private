@@ -7,7 +7,7 @@ import com.epam.jwd_online_book_store.controller.command.ResponseContext;
 
 public class ErrorPageCommand implements Command {
 
-    private static final ResponseContext ERROR_PAGE = new ResponseContextImpl(PathToPages.ERROR_PAGE, ResponseContext.ResponseType.FORWARD);
+    private static final ResponseContext ERROR_PAGE = new ResponseContextImpl(PathToPages.ERROR500_PAGE, ResponseContext.ResponseType.FORWARD);
 
     @Override
     public ResponseContext execute(RequestContext requestContext) {

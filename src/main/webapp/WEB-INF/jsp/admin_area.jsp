@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: alexe
@@ -9,24 +10,56 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+            integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+            crossorigin="anonymous"></script>
 </head>
 <body>
-This is admin area
-<a href="home?command=self_delete">
-    <button>Delete me pls!(admin)</button>
+Email:
+<c:out value="${sessionScope.user.login}"/>
+<a href="home?command=user_change_login">
+    <button>Change my email</button>
 </a>
+<br>
+<br>
+First name:
+<c:out value="${sessionScope.user.firstName}"/>
 <a href="home?command=user_change_first_name">
-    <button>Update my first name pls!(admin)</button>
+    <button>Change first name</button>
+</a>
+<br>
+<br>
+Last name:
+<c:out value="${sessionScope.user.lastName}"/>
+<a href="home?command=user_change_last_name">
+    <button>Change last name</button>
+</a>
+<br>
+<br>
+<a href="home?command=add_book">
+    <button>Add new book in the store!</button>
+</a>
+<a href="home?command=self_delete">
+    <button>Delete my account</button>
+</a>
+<a href="home?command=ban_user">
+    <button>Ban user!</button>
+</a>
+<a href="home?command=unban_user">
+    <button>Unban user!</button>
 </a>
 <a href="home?command=admin_page">
-    <button>To admin page</button>
-</a>
-<a href="home?command=user_change_first_name">
-    <button>Change my first name</button>
-</a><a href="home?command=user_change_last_name">
-    <button>Change my last name</button>
-</a><a href="home?command=user_change_login">
-    <button>Change my email</button>
+    <button>To main page</button>
 </a>
 </body>
 </html>

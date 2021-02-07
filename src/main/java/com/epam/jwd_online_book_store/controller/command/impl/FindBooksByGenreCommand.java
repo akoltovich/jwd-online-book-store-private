@@ -23,12 +23,17 @@ public class FindBooksByGenreCommand implements Command {
         }
         UserService service = UserService.getInstance();
         String genre = requestContext.getParameter("genre");
-        try {
-            List<Book> books = service.findBooksByGenre(genre);
+//        try {
+        List<Book> books = service.findBooksByGenre(genre);
+        if (!books.isEmpty()) {
             requestContext.setAttribute("books", books);
-        } catch (BookException e) {
-            e.printStackTrace();
+        } else {
+            String empty = "Sorry, we don't have books in this genre";
+            requestContext.setAttribute("empt", empty);
         }
-        return BOOKS_BY_GENRE_REDIRECT;
+//        } catch (BookException e) {
+//            e.printStackTrace();
+//        }
+        return BOOKS_BY_GENRE;
     }
 }

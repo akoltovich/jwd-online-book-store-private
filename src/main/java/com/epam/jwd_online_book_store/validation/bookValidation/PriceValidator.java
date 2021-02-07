@@ -7,7 +7,7 @@ public class PriceValidator {
         if (price > 0) {
             return true;
         } else {
-            throw new BookException(String.valueOf(price));
+            throw new BookException("Price must be greater than 0 ");
         }
     }
 }

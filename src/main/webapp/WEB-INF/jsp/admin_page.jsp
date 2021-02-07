@@ -42,7 +42,10 @@ ${sessionScope.user.lastName}
                 <a class="nav-link" href="home?command=admin_area">Personal area</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="home?command=error">Error</a>
+                <a class="nav-link" href="home?command=show_all_admin_orders">Show all orders verified by me</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="home?command=show_orders_by_status">Show orders by status</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -67,8 +70,36 @@ ${sessionScope.user.lastName}
                     <a class="dropdown-item" href="home?command=users_by_first_name">By first name</a>
                     <a class="dropdown-item" href="home?command=users_by_last_name">By last name</a>
                     <a class="dropdown-item" href="home?command=all_users">Show all users</a>
+                    <a class="dropdown-item" href="home?command=banned_users">Show banned users</a>
                 </div>
             </li>
+            <%--            <li class="nav-item dropdown">--%>
+            <%--                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownShow" role="button"--%>
+            <%--                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
+            <%--                Show orders by status:--%>
+            <%--                </a>--%>
+            <%--            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">--%>
+            <%--                    <a class="dropdown-item" href="home?command=show_orders_by_status">Awaiting confirmation--%>
+            <%--                    <button type="submit" name="status" value="Awaiting confirmation"> </button></a>--%>
+            <%--                    <a class="dropdown-item" href="home?command=show_orders_by_status?status=In progress">In progress</a>--%>
+            <%--                    <a class="dropdown-item" href="home?command=show_orders_by_status?status=Completed">Completed</a>--%>
+            <%--                </div>--%>
+            <%--            </li>--%>
+<%--            <li>--%>
+<%--                <div class="dropdown">--%>
+<%--                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"--%>
+<%--                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
+<%--                        Show orders by status--%>
+<%--                    </button>--%>
+<%--                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">--%>
+<%--                        <a href="home?command=show_orders_by_status">--%>
+<%--                        <button class="dropdown-item" name="status" value="Awaiting confirmation" type="button">Awaiting confirmation</button>--%>
+<%--                        </a>--%>
+<%--                        <button class="dropdown-item" type="button">Another action</button>--%>
+<%--                        <button class="dropdown-item" type="button">Something else here</button>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </li>--%>
         </ul>
     </div>
 </nav>

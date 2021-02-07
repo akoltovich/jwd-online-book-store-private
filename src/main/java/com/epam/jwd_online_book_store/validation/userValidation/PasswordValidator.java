@@ -9,7 +9,7 @@ public class PasswordValidator {
         if (password != null && password.matches(VALID_PASSWORD)) {
             return true;
         } else {
-            throw new UserException(password);
+            throw new UserException("Password must contain eight characters, at least one letter and one number, your password is incorrect ");
         }
     }
 }

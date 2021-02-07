@@ -1,20 +1,17 @@
 package com.epam.jwd_online_book_store.domain;
 
-public class BookOrderStatus {
+public enum BookOrderStatus {
+    AWAITING_CONFIRMATION("Awaiting confirmation"),
+    IN_PROGRESS("In progress"),
+    COMPLETED("Completed");
+
     private String status;
 
-    public BookOrderStatus() {
-    }
-
-    public BookOrderStatus(String status) {
+    BookOrderStatus(String status) {
         this.status = status;
     }
 
     public String getStatus() {
         return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }

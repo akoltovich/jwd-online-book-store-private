@@ -26,9 +26,9 @@ public class BookDAOImpl implements BookDAO {
     private static final String SQL_FIND_BY_ID = "select * from book where id=?";
     private static final String SQL_FIND_ALL_BOOKS = "select * from book";
     private static final String SQL_CREATE_BOOK = "insert into book (id,name,author,date_of_writing,price,price_per_day,quantity,preview,genre) values (?,?,?,?,?,?,?,?,?)";
-        private static final String SQL_DELETE_BOOK = "delete from book where id=?";
-//    private static final String SQL_DELETE_BOOK = "delete from book where name =?";
-    private static final String SQL_UPDATE_BOOK = "update book set name=?,author=?,date_of_writing=?,price=?,price_per_day,quantity=?,preview=?,genre=?, where id=?";
+    private static final String SQL_DELETE_BOOK = "delete from book where id=?";
+    private static final String SQL_UPDATE_BOOK = "update book set name=?,author=?,date_of_writing=?,price=?,quantity=?,preview=?,genre=? where id=?";
+//            ",price_per_day" +
     private static final String SQL_FIND_BY_NAME = "select * from book where name=?";
     private static final String SQL_FIND_BY_AUTHOR = "select * from book where author=?";
     private static final String SQL_FIND_BY_GENRE = "select * from book where genre=?";
@@ -182,11 +182,11 @@ public class BookDAOImpl implements BookDAO {
             preparedStatement.setString(2, book.getAuthor());
             preparedStatement.setDate(3, book.getDateOfWriting());
             preparedStatement.setDouble(4, book.getPrice());
-            preparedStatement.setDouble(5, book.getPricePerDay());
-            preparedStatement.setInt(6, book.getQuantity());
-            preparedStatement.setString(7, book.getPreview());
-            preparedStatement.setString(8, book.getGenre());
-            preparedStatement.setInt(9, id);
+//            preparedStatement.setDouble(5, book.getPricePerDay());
+            preparedStatement.setInt(5, book.getQuantity());
+            preparedStatement.setString(6, book.getPreview());
+            preparedStatement.setString(7, book.getGenre());
+            preparedStatement.setInt(8, id);
             preparedStatement.executeUpdate();
             CloseUtil.customClose(connection, preparedStatement);
         } catch (SQLException e) {
@@ -194,7 +194,7 @@ public class BookDAOImpl implements BookDAO {
         }
     }
 
-        @Override
+    @Override
     public void delete(int id) {
         Connection connection = DataSource.getConnection();
         try {

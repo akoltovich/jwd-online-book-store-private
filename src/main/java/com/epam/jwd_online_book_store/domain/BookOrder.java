@@ -14,11 +14,17 @@ public class BookOrder {
     public BookOrder() {
     }
 
-    public BookOrder( Date dateOfCreation, int orderedBy, int verifiedBy, Date orderCompleteDate, String bookOrderStatus) {
+    public BookOrder(Date dateOfCreation, int orderedBy, int verifiedBy, Date orderCompleteDate, String bookOrderStatus) {
         this.dateOfCreation = dateOfCreation;
         this.orderedBy = orderedBy;
         this.verifiedBy = verifiedBy;
         this.orderCompleteDate = orderCompleteDate;
+        this.bookOrderStatus = bookOrderStatus;
+    }
+
+    public BookOrder(Date dateOfCreation, int orderedBy, String bookOrderStatus) {
+        this.dateOfCreation = dateOfCreation;
+        this.orderedBy = orderedBy;
         this.bookOrderStatus = bookOrderStatus;
     }
 

@@ -10,7 +10,7 @@ public class DateOfWritingValidator {
         if (dateOfWriting.before(Date.valueOf(LocalDate.now()))) {
             return true;
         } else {
-            throw new BookException(dateOfWriting.toString());
+            throw new BookException("Date of writing must be in past ");
         }
     }
 }

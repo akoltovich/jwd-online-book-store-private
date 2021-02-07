@@ -19,11 +19,11 @@ public class SelfDeleteCommand implements Command {
         UserService service = UserService.getInstance();
         HttpSession session = requestContext.getSession();
         UserDTO user = (UserDTO) session.getAttribute("user");
-        try {
+//        try {
             service.selfDelete(user);
-        } catch (UserException e) {
-            e.printStackTrace();
-        }
+//        } catch (UserException e) {
+//            e.printStackTrace();
+//        }
         return MAIN_PAGE;
     }
 }

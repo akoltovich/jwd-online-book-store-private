@@ -11,7 +11,7 @@ public class CloseUtil {
 
     public static void customClose(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet) {
         try {
-            connection.close();
+//            connection.close();
             preparedStatement.close();
             resultSet.close();
             DataSource.returnConnection(connection);
@@ -22,7 +22,7 @@ public class CloseUtil {
 
     public static void customClose(Connection connection, PreparedStatement preparedStatement) {
         try {
-            connection.close();
+//            connection.close();
             preparedStatement.close();
             DataSource.returnConnection(connection);
         } catch (SQLException e) {

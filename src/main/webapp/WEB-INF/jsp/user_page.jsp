@@ -24,9 +24,9 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-    Hello,user
-    ${sessionScope.user.firstName}
-    ${sessionScope.user.lastName}
+Hello,user
+${sessionScope.user.firstName}
+${sessionScope.user.lastName}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <%--    <a class="navbar-brand" href="home?command=main_page">Main page</a>--%>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -42,7 +42,7 @@
                 <a class="nav-link" href="home?command=user_area">Personal area</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="home?command=error">Error</a>
+                <a class="nav-link" href="home?command=show_all_user_orders">Show all my orders</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"

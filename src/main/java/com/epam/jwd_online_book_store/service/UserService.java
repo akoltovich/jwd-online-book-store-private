@@ -6,17 +6,17 @@ import com.epam.jwd_online_book_store.dao.UserDAO;
 import com.epam.jwd_online_book_store.dao.impl.BookDAOImpl;
 import com.epam.jwd_online_book_store.dao.impl.BookOrderDAOImpl;
 import com.epam.jwd_online_book_store.dao.impl.UserDAOImpl;
-import com.epam.jwd_online_book_store.domain.Book;
-import com.epam.jwd_online_book_store.domain.User;
-import com.epam.jwd_online_book_store.dto.BookDTO;
+import com.epam.jwd_online_book_store.domain.*;
 import com.epam.jwd_online_book_store.dto.UserDTO;
 import com.epam.jwd_online_book_store.exception.BookException;
+import com.epam.jwd_online_book_store.exception.BookOrderException;
 import com.epam.jwd_online_book_store.exception.UserException;
-import com.epam.jwd_online_book_store.util.BookConverter;
 import com.epam.jwd_online_book_store.util.UserConverter;
-import com.epam.jwd_online_book_store.validation.userValidation.UserValidator;
+import com.epam.jwd_online_book_store.validation.userValidation.*;
 
-import java.util.List;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.*;
 
 public class UserService {
 
@@ -39,135 +39,155 @@ public class UserService {
             userDAO.create(user);
         }
         return user;
+//        return null;
     }
 
-    public UserDTO signIn(String login, String password) {
+    public UserDTO signIn(String login, String password) throws UserException {
         User user = userDAO.findByLogin(login);
-        try {
-            if (user == null || !user.getPassword().equals(password)) {
-                throw new UserException("incorrect email or password");
-            }
-            if (user.isBanned()) {
-                throw new UserException("You are in ban");
-            }
-        } catch (UserException e) {
-            e.printStackTrace();
+        UserDTO userDTO = null;
+        if (SignInValidator.isValid(user, password)) {
+            userDTO = UserConverter.userToUserDTO(user);
         }
-        return UserConverter.userToUserDTO(user);
+        return userDTO;
+//        try {
+//            if (user == null || !user.getPassword().equals(password)) {
+//                throw new UserException("incorrect email or password");
+//
+//            }
+//            if (user.isBanned()) {
+//                throw new UserException("You are in ban");
+//            }
+//        } catch (UserException e) {
+//            e.printStackTrace();
+//        }
+//        return UserConverter.userToUserDTO(user);
     }
 
-//    public List<BookDTO> findBooksByName(String name) throws BookException {
-//        List<Book> books = bookDAO.findByName(name);
-//        List<BookDTO> bookDTOS = BookConverter.listOfBookToListOfBookDTO(books);
-//        if (!bookDTOS.isEmpty()) {
-//            return bookDTOS;
+    public List<Book> findBooksByName(String name) {
+        return bookDAO.findByName(name);
+//        if (!books.isEmpty()) {
+//            return books;
 //        }
 //        throw new BookException("We dont have this books!");
-//    }
-//
-//    public List<BookDTO> findBooksByAuthor(String author) throws BookException {
-//        List<Book> books = bookDAO.findByAuthor(author);
-//        List<BookDTO> bookDTOS = BookConverter.listOfBookToListOfBookDTO(books);
-//        if (!bookDTOS.isEmpty()) {
-//            return bookDTOS;
+    }
+
+    public List<Book> findBooksByAuthor(String author) {
+        return bookDAO.findByAuthor(author);
+//        if (!books.isEmpty()) {
+//            return books;
 //        }
 //        throw new BookException("We dont have his books!");
-//    }
-//
-//    public List<BookDTO> findBooksByGenre(String genre) throws BookException {
-//        List<Book> books = bookDAO.findByGenre(genre);
-//        List<BookDTO> bookDTOS = BookConverter.listOfBookToListOfBookDTO(books);
-//        if (!bookDTOS.isEmpty()) {
-//            return bookDTOS;
+    }
+
+    public List<Book> findBooksByGenre(String genre) {
+        return bookDAO.findByGenre(genre);
+//        if (!books.isEmpty()) {
+//            return books;
 //        }
 //        throw new BookException("We dont have books of genre" + genre);
-//    }
-//
-//    public List<BookDTO> findBooksByPrice(double from, double to) throws BookException {
-//        List<Book> books = bookDAO.findByPrice(from, to);
-//        List<BookDTO> bookDTOS = BookConverter.listOfBookToListOfBookDTO(books);
-//        if (!bookDTOS.isEmpty()) {
-//            return bookDTOS;
+    }
+
+    public List<Book> findBooksByPrice(double from, double to) {
+        return bookDAO.findByPrice(from, to);
+//        if (!books.isEmpty()) {
+//            return books;
 //        }
 //        throw new BookException("We dont have books with this price");
-//    }
-//
-//    public List<BookDTO> findAllBooks() throws BookException {
-//        List<Book> books = bookDAO.findAll();
-//        List<BookDTO> bookDTOS = BookConverter.listOfBookToListOfBookDTO(books);
-//        if (!bookDTOS.isEmpty()) {
-//            return bookDTOS;
+    }
+
+    public List<Book> findAllBooks() {
+        return bookDAO.findAll();
+//        if (!books.isEmpty()) {
+//            return books;
 //        }
 //        throw new BookException("Sorry, we dont have books:(");
-//    }
-
-    public List<Book> findBooksByName(String name) throws BookException {
-        List<Book> books = bookDAO.findByName(name);
-        if (!books.isEmpty()) {
-            return books;
-        }
-        throw new BookException("We dont have this books!");
     }
 
-    public List<Book> findBooksByAuthor(String author) throws BookException {
-        List<Book> books = bookDAO.findByAuthor(author);
-        if (!books.isEmpty()) {
-            return books;
-        }
-        throw new BookException("We dont have his books!");
-    }
-
-    public List<Book> findBooksByGenre(String genre) throws BookException {
-        List<Book> books = bookDAO.findByGenre(genre);
-        if (!books.isEmpty()) {
-            return books;
-        }
-        throw new BookException("We dont have books of genre" + genre);
-    }
-
-    public List<Book> findBooksByPrice(double from, double to) throws BookException {
-        List<Book> books = bookDAO.findByPrice(from, to);
-        if (!books.isEmpty()) {
-            return books;
-        }
-        throw new BookException("We dont have books with this price");
-    }
-
-    public List<Book> findAllBooks() throws BookException {
-        List<Book> books = bookDAO.findAll();
-        if (!books.isEmpty()) {
-            return books;
-        }
-        throw new BookException("Sorry, we dont have books:(");
-    }
-
-    public void selfDelete(UserDTO userDTO) throws UserException {
+    public void selfDelete(UserDTO userDTO) {
         User userByLogin = userDAO.findByLogin(userDTO.getLogin());
         userDAO.delete(userByLogin.getId());
     }
 
-    public void updateLogin(UserDTO userDTO, String newLogin) {
+    public void updateLogin(UserDTO userDTO, String newLogin) throws UserException {
         User user = userDAO.findByLogin(userDTO.getLogin());
-        userDAO.update(user.getId(), new User(newLogin, user.getPassword(), user.getFirstName(), user.getLastName(), user.getRoleId()));
+        if (EmailValidator.isValid(newLogin)) {
+            userDAO.update(user.getId(), new User(newLogin, user.getPassword(), user.getFirstName(), user.getLastName(), user.getRoleId()));
+        }
     }
 
-//    public void updatePassword(UserDTO userDTO, String newPassword) {
-//        User user = userDAO.findByLogin(userDTO.getLogin());
-//        userDAO.update(user.getId(), new User(user.getLogin(), newPassword, user.getFirstName(), user.getLastName(), user.getRoleId()));
-//    }
-
-    public void updatePassword(String login, String newPassword) {
+    public void updatePassword(String login, String newPassword) throws UserException {
         User user = userDAO.findByLogin(login);
-        userDAO.update(user.getId(), new User(user.getLogin(), newPassword, user.getFirstName(), user.getLastName(), user.getRoleId()));
+        if (PasswordValidator.isValid(newPassword)) {
+            userDAO.update(user.getId(), new User(user.getLogin(), newPassword, user.getFirstName(), user.getLastName(), user.getRoleId()));
+        }
     }
 
-    public void updateFirstName(UserDTO userDTO, String newFirstName) {
+    public void updateFirstName(UserDTO userDTO, String newFirstName) throws UserException {
         User user = userDAO.findByLogin(userDTO.getLogin());
-        userDAO.update(user.getId(), new User(user.getLogin(), user.getPassword(), newFirstName, user.getLastName(), user.getRoleId()));
+        if (FirstLastNameValidator.isValid(newFirstName)) {
+            userDAO.update(user.getId(), new User(user.getLogin(), user.getPassword(), newFirstName, user.getLastName(), user.getRoleId()));
+        }
     }
 
-    public void updateLastName(UserDTO userDTO, String newLastName) {
+    public void updateLastName(UserDTO userDTO, String newLastName) throws UserException {
         User user = userDAO.findByLogin(userDTO.getLogin());
-        userDAO.update(user.getId(), new User(user.getLogin(), user.getPassword(), user.getFirstName(), newLastName, user.getRoleId()));
+        if (FirstLastNameValidator.isValid(newLastName)) {
+            userDAO.update(user.getId(), new User(user.getLogin(), user.getPassword(), user.getFirstName(), newLastName, user.getRoleId()));
+        }
+    }
+
+    private BookOrder createOrder(int orderedBy) {
+        BookOrder bookOrder = new BookOrder(Date.valueOf(LocalDate.now()), orderedBy, BookOrderStatus.AWAITING_CONFIRMATION.getStatus());
+        bookOrderDAO.create(bookOrder);
+        return bookOrder;
+    }
+
+    public void createBookOrder(int bookId, String login) throws BookException{
+        User user = userDAO.findByLogin(login);
+        List<BookOrder> orders = bookOrderDAO.findAll();
+        int orderId = orders.get(orders.size() - 1).getId();
+        BookOrderBook orderBook = new BookOrderBook(bookId, orderId);
+        Book book = bookDAO.findById(bookId);
+        if (book.getQuantity() > 0) {
+            createOrder(user.getId());
+            bookOrderDAO.createBookOrderBook(orderBook);
+        } else {
+            throw new BookException("We don't have this book in storage");
+        }
+//        return orderBook;
+    }
+
+    public Map<BookOrder, Book> getAllUserOrders(String login) {
+        User user = userDAO.findByLogin(login);
+        Map<BookOrder, Book> orders = new LinkedHashMap<>();
+        List<BookOrder> bookOrders = new ArrayList<>(bookOrderDAO.findByUserId(user.getId()));
+        List<BookOrderBook> orderBooks = new ArrayList<>();
+        BookOrderBook bookOrderBook;
+        for (BookOrder bookOrder : bookOrders) {
+            bookOrderBook = bookOrderDAO.findOrderByOrderId(bookOrder.getId());
+            orderBooks.add(bookOrderBook);
+        }
+        List<Book> books = new ArrayList<>();
+        Book book;
+        for (BookOrderBook bookOrderBookTwo : orderBooks) {
+            book = bookDAO.findById(bookOrderBookTwo.getBookId());
+            books.add(book);
+        }
+        int count = bookOrders.size();
+        while (count > 0) {
+            orders.put(bookOrders.get(count - 1), books.get(count - 1));
+            count--;
+        }
+        return orders;
+    }
+
+    public void deleteOrder(int id, String login) throws BookOrderException {
+        User user = userDAO.findByLogin(login);
+        BookOrder order = bookOrderDAO.findById(id);
+        if (user.getId() == order.getOrderedBy()) {
+            bookOrderDAO.delete(id);
+        } else {
+            throw new BookOrderException("You can delete only yours orders");
+        }
     }
 }

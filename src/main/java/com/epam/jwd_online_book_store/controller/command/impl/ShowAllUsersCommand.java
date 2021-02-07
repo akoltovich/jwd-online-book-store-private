@@ -17,12 +17,17 @@ public class ShowAllUsersCommand implements Command {
     @Override
     public ResponseContext execute(RequestContext requestContext) {
         AdminService service = AdminService.getInstance();
-        try {
-            List<UserDTO> users = service.getAllUsers();
+//        try {
+        List<UserDTO> users = service.getAllUsers();
+        if (!users.isEmpty()) {
             requestContext.setAttribute("users", users);
-        } catch (UserException e) {
-            e.printStackTrace();
+        } else {
+            String empty = "We don't have users at all";
+            requestContext.setAttribute("empt", empty);
         }
+//        } catch (UserException e) {
+//            e.printStackTrace();
+//        }
         return ALL_USERS;
     }
 }

@@ -8,7 +8,7 @@ public class RoleIdValidator {
         if (roleId == 1 || roleId == 2) {
             return true;
         } else {
-            throw new UserException(String.valueOf(roleId));
+            throw new UserException("Role can be only Admin or User ");
         }
     }
 }

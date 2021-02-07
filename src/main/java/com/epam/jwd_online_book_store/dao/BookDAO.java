@@ -14,8 +14,6 @@ public interface BookDAO extends GeneralDAO<Book> {
     @Override
     void create(Book book);
 
-    //    @Override
-//    void delete(String name);
     @Override
     void delete(int id);
 

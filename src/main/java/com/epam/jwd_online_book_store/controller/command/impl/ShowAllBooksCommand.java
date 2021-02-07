@@ -18,12 +18,17 @@ public class ShowAllBooksCommand implements Command {
     @Override
     public ResponseContext execute(RequestContext requestContext) {
         UserService service = UserService.getInstance();
-        try {
-            List<Book> books = service.findAllBooks();
+//        try {
+        List<Book> books = service.findAllBooks();
+        if (!books.isEmpty()) {
             requestContext.setAttribute("books", books);
-        } catch (BookException e) {
-            e.printStackTrace();
+        } else {
+            String empty = "Sorry, we don't have books at all";
+            requestContext.setAttribute("empt", empty);
         }
+//        } catch (BookException e) {
+//            e.printStackTrace();
+//        }
         return ALL_BOOKS;
     }
 }

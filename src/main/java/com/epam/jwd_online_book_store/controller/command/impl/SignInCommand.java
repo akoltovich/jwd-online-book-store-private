@@ -5,13 +5,14 @@ import com.epam.jwd_online_book_store.controller.command.Command;
 import com.epam.jwd_online_book_store.controller.command.RequestContext;
 import com.epam.jwd_online_book_store.controller.command.ResponseContext;
 import com.epam.jwd_online_book_store.dto.UserDTO;
+import com.epam.jwd_online_book_store.exception.UserException;
 import com.epam.jwd_online_book_store.service.UserService;
 
 import javax.servlet.http.HttpSession;
 
 public class SignInCommand implements Command {
 
-    private static final ResponseContext ERROR_PAGE = new ResponseContextImpl(PathToPages.ERROR_PAGE, ResponseContext.ResponseType.FORWARD);
+    private static final ResponseContext ERROR_PAGE = new ResponseContextImpl(PathToPages.ERROR500_PAGE, ResponseContext.ResponseType.FORWARD);
     private static final ResponseContext ADMIN_PAGE_REDIRECT = new ResponseContextImpl(PathToPages.ADMIN_PAGE_REDIRECT, ResponseContext.ResponseType.REDIRECT);
     private static final ResponseContext USER_PAGE_REDIRECT = new ResponseContextImpl(PathToPages.USER_PAGE_REDIRECT, ResponseContext.ResponseType.REDIRECT);
     private static final ResponseContext MAIN_PAGE = new ResponseContextImpl(PathToPages.MAIN_PAGE, ResponseContext.ResponseType.FORWARD);
@@ -26,7 +27,14 @@ public class SignInCommand implements Command {
         UserService userService = UserService.getInstance();
         String login = requestContext.getParameter("login");
         String password = requestContext.getParameter("password");
-        UserDTO user = userService.signIn(login, password);
+        UserDTO user;
+        try {
+            user = userService.signIn(login, password);
+        } catch (UserException e) {
+            e.printStackTrace();
+            requestContext.setAttribute("exception", e);
+            return ERROR_PAGE;
+        }
         if (user != null) {
             HttpSession session = requestContext.getSession();
             session.setAttribute("user", user);
@@ -35,9 +43,10 @@ public class SignInCommand implements Command {
             } else if (user.getRoleId() == 1) {
                 return ADMIN_PAGE_REDIRECT;
             }
-        } else {
-            return ERROR_PAGE;
         }
+//        } else {
+//            return ERROR_PAGE;
+//        }
         return SIGN_IN_PAGE;
     }
 }

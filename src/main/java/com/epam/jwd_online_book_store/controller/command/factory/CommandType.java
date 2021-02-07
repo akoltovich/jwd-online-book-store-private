@@ -25,6 +25,19 @@ public enum CommandType {
     USER_CHANGE_LOGIN("user_change_login"),
     USER_CHANGE_PASSWORD("user_change_password"),
     DELETE_BOOK("delete_book"),
+    BOOK_DETAILS("book_details"),
+    ADD_BOOK("add_book"),
+    UPDATE_BOOK("update_book"),
+    BAN_USER("ban_user"),
+    BANNED_USERS("banned_users"),
+    UNBAN_USER("unban_user"),
+    SHOW_ALL_USER_ORDERS("show_all_user_orders"),
+    ORDER_BOOK("order_book"),
+    DELETE_ORDER("delete_order"),
+    SHOW_ALL_ADMIN_ORDERS("show_all_admin_orders"),
+    TAKE_ORDER("take_order"),
+    COMPLETE_ORDER("complete_order"),
+    SHOW_ORDERS_BY_STATUS("show_orders_by_status"),
     ERROR("error");
 
     private String value;

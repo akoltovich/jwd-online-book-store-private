@@ -21,12 +21,17 @@ public class FindUsersByLastNameCommand implements Command {
         }
         AdminService service = AdminService.getInstance();
         String lastName = requestContext.getParameter("last_name");
-        try {
-            List<UserDTO> users = service.getUsersByLastName(lastName);
+//        try {
+        List<UserDTO> users = service.getUsersByLastName(lastName);
+        if (!users.isEmpty()) {
             requestContext.setAttribute("users", users);
-        } catch (UserException e) {
-            e.printStackTrace();
+        } else {
+            String empty = "We dont have users with this last name";
+            requestContext.setAttribute("empt", empty);
         }
-        return USERS_BY_LAST_NAME_REDIRECT;
+//        } catch (UserException e) {
+//            e.printStackTrace();
+//        }
+        return USERS_BY_LAST_NAME;
     }
 }

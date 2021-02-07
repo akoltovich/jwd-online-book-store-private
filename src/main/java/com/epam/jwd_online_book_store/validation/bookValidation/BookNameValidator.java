@@ -7,7 +7,7 @@ public class BookNameValidator {
         if (bookName != null) {
             return true;
         } else {
-            throw new BookException(bookName);
+            throw new BookException("Name of book can't be null ");
         }
     }
 }

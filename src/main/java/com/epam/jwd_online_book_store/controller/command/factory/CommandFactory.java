@@ -57,6 +57,32 @@ public class CommandFactory {
                 return new UserChangeLoginCommand();
             case DELETE_BOOK:
                 return new DeleteBookCommand();
+//            case BOOK_DETAILS:
+//                return new BookDetailsCommand();
+            case ADD_BOOK:
+                return new AddBookCommand();
+            case UPDATE_BOOK:
+                return new UpdateBookCommand();
+            case BAN_USER:
+                return new BanUserCommand();
+            case BANNED_USERS:
+                return new ShowBannedUsersCommand();
+            case UNBAN_USER:
+                return new UnbanUserCommand();
+            case SHOW_ALL_USER_ORDERS:
+                return new ShowAllUserOrdersCommand();
+            case ORDER_BOOK:
+                return new OrderBookCommand();
+            case DELETE_ORDER:
+                return new DeleteOrderCommand();
+            case SHOW_ALL_ADMIN_ORDERS:
+                return new ShowAllAdminOrdersCommand();
+            case TAKE_ORDER:
+                return new TakeOrderCommand();
+            case COMPLETE_ORDER:
+                return new CompleteOrderCommand();
+            case SHOW_ORDERS_BY_STATUS:
+                return new ShowAllOrdersByStatusCommand();
             default:
                 return new ErrorPageCommand();
         }

@@ -9,7 +9,7 @@ public class FirstLastNameValidator {
         if (firstOrLastName != null && firstOrLastName.matches(VALID_FIRST_LAST_NAME)) {
             return true;
         } else {
-            throw new UserException(firstOrLastName);
+            throw new UserException("Name or last name " + firstOrLastName + "is incorrect");
         }
     }
 }

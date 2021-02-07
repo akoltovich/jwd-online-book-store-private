@@ -7,7 +7,7 @@ public class QuantityValidator {
         if (quantity >= 0) {
             return true;
         } else {
-            throw new BookException(String.valueOf(quantity));
+            throw new BookException("Quantity must be greater than 0 ");
         }
     }
 }

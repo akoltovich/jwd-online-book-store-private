@@ -20,12 +20,17 @@ public class FindUserByLoginCommand implements Command {
         }
         AdminService service = AdminService.getInstance();
         String login = requestContext.getParameter("login");
-        try {
-            UserDTO user = service.getUserByLogin(login);
+//        try {
+        UserDTO user = service.getUserByLogin(login);
+        if (user != null && user.getRoleId() == 2) {
             requestContext.setAttribute("user", user);
-        } catch (UserException e) {
-            e.printStackTrace();
+        } else {
+            String empty = "We dont have user with email like that";
+            requestContext.setAttribute("empt", empty);
         }
-        return USER_BY_LOGIN_REDIRECT;
+//        } catch (UserException e) {
+//            e.printStackTrace();
+//        }
+        return USER_BY_LOGIN;
     }
 }

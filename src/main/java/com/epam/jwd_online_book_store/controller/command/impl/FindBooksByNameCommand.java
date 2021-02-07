@@ -23,12 +23,17 @@ public class FindBooksByNameCommand implements Command {
         }
         UserService userService = UserService.getInstance();
         String name = requestContext.getParameter("name");
-        try {
-            List<Book> book = userService.findBooksByName(name);
-            requestContext.setAttribute("books", book);
-        } catch (BookException e) {
-            e.printStackTrace();
+//        try {
+        List<Book> books = userService.findBooksByName(name);
+        if (!books.isEmpty()) {
+            requestContext.setAttribute("books", books);
+        } else {
+            String empty = "Sorry, we don't have books with this name";
+            requestContext.setAttribute("empt", empty);
         }
-        return BOOKS_BY_NAME_REDIRECT;
+//        } catch (BookException e) {
+//            e.printStackTrace();
+//        }
+        return BOOKS_BY_NAME;
     }
 }

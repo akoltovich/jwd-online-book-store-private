@@ -22,12 +22,17 @@ public class FindUsersByFirstNameCommand implements Command {
         }
         AdminService service = AdminService.getInstance();
         String firstName = requestContext.getParameter("first_name");
-        try {
-            List<UserDTO> users = service.getUsersByFirstName(firstName);
+//        try {
+        List<UserDTO> users = service.getUsersByFirstName(firstName);
+        if (!users.isEmpty()) {
             requestContext.setAttribute("users", users);
-        } catch (UserException e) {
-            e.printStackTrace();
+        } else {
+            String empty = "We don't have users with this name!";
+            requestContext.setAttribute("empt", empty);
         }
-        return USERS_BY_FIRST_NAME_REDIRECT;
+//        } catch (UserException e) {
+//            e.printStackTrace();
+//        }
+        return USERS_BY_FIRST_NAME;
     }
 }
