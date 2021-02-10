@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: alexe
@@ -24,22 +25,32 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-This is user area
-<a href="home?command=self_delete">
-    <button>Delete me pls!</button>
+Email:
+<c:out value="${sessionScope.user.login}"/>
+<a href="home?command=user_change_login">
+    <button>Change my email</button>
 </a>
-<a href="home?command=user_change_first_name">
-    <button>Update my first name pls!</button>
-</a>
-<a href="home?command=user_page">
-    <button>To user page</button>
-</a>
+<br>
+<br>
+First name:
+<c:out value="${sessionScope.user.firstName}"/>
 <a href="home?command=user_change_first_name">
     <button>Change my first name</button>
-</a><a href="home?command=user_change_last_name">
+</a>
+<br>
+<br>
+Last name:
+<c:out value="${sessionScope.user.lastName}"/>
+<a href="home?command=user_change_last_name">
     <button>Change my last name</button>
-</a><a href="home?command=user_change_login">
-    <button>Change my email</button>
+</a>
+<br>
+<br>
+<a href="home?command=self_delete">
+    <button>Delete my account!</button>
+</a>
+<a href="home?command=user_page">
+    <button>To main menu</button>
 </a>
 </body>
 </html>

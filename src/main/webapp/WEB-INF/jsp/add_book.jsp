@@ -24,30 +24,82 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-Registration page
 <form method="post">
-    Book name:
-    <input type="text" name="name">
-    <br>
-    Author:
-    <input type="trxt" name="author">
-    <br>
-    Date of writing:
-    <input type="date" name="date_of_writing">
-    <br>
-    Price:
-    <input type="number" name="price">
-    <br>
-    Quantity:
-    <input type="number" name="quantity">
-    <br>
-    Preview:
-    <input type="text" name="preview">
-    <br>
-    Genre:
-    <input type="text" name="genre">
-    <br>
-    <input type="submit" name="Add book!">
+    <%--    Book name:--%>
+    <%--    <input type="text" name="name">--%>
+    <%--    <br>--%>
+    <%--    Author:--%>
+    <%--    <input type="trxt" name="author">--%>
+    <%--    <br>--%>
+    <%--    Date of writing:--%>
+    <%--    <input type="date" name="date_of_writing">--%>
+    <%--    <br>--%>
+    <%--    Price:--%>
+    <%--    <input type="number" name="price">--%>
+    <%--    <br>--%>
+    <%--    Quantity:--%>
+    <%--    <input type="number" name="quantity">--%>
+    <%--    <br>--%>
+    <%--    Preview:--%>
+    <%--    <input type="text" name="preview">--%>
+    <%--    <br>--%>
+    <%--    Genre:--%>
+    <%--    <input type="text" name="genre">--%>
+    <%--    <br>--%>
+    <%--    <input type="submit" name="Add book!">--%>
+    <div class="form-group row">
+        <label for="Name" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="Name" name="name" aria-describedby="nameHelp"
+                   placeholder="Enter book name">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Author" class="col-sm-2 col-form-label">Author</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="Author" name="author" placeholder="Enter author name">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="dateOfWriting" class="col-sm-2 col-form-label">Date of writing</label>
+        <div class="col-sm-5">
+            <input type="date" class="form-control" id="dateOfWriting" name="date_of_writing" aria-describedby="Name"
+                   placeholder="Enter date of writing">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="price" class="col-sm-2 col-form-label">Price</label>
+        <div class="col-sm-5">
+            <input type="number" class="form-control" id="price" name="price" aria-describedby="Last"
+                   placeholder="Enter price">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="quantity" class="col-sm-2 col-form-label">Quantity</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="quantity" name="quantity" aria-describedby="Last"
+                   placeholder="Enter quantity">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="preview" class="col-sm-2 col-form-label">Preview</label>
+        <div class="col-sm-5">
+            <textarea type="text" class="form-control" id="preview" name="preview" rows="3" aria-describedby="Last"
+                   placeholder="Enter preview"></textarea>
+        </div>
+    </div>
+        <div class="form-group row">
+            <label for="genre" class="col-sm-2 col-form-label">Genre</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="genre" name="genre" aria-describedby="Last"
+                       placeholder="Enter genre">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Add book</button>
+            </div>
+        </div>
 </form>
 </body>
 </html>

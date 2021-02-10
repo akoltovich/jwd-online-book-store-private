@@ -24,15 +24,36 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<form method="post">
-    Input your login:
-    <input type="email" name="login">
-    <br>
-    Input new password:
-    <input type="password" name="new_password">
-    <br>
-    <input type="submit">
+<%--<form method="post">--%>
+<%--    Input your login:--%>
+<%--    <input type="email" name="login">--%>
+<%--    <br>--%>
+<%--    Input new password:--%>
+<%--    <input type="password" name="new_password">--%>
+<%--    <br>--%>
+<%--    <input type="submit">--%>
 <%--    <button type="submit">Change my password!</button>--%>
+<form method="post">
+    <div class="form-group row">
+        <label for="Email" class="col-sm-2 col-form-label">Email address</label>
+        <div class="col-sm-5">
+            <input type="email" class="form-control" id="Email" name="login" aria-describedby="emailHelp"
+                   placeholder="Enter email">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Password" class="col-sm-2 col-form-label">New password</label>
+        <div class="col-sm-5">
+            <input type="password" class="form-control" id="Password" name="new_password" placeholder="Enter your new password">
+            <small id="Password1" class="form-text text-muted">Password must contain eight characters, at least one
+                letter and one number</small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Sign in</button>
+        </div>
+    </div>
 </form>
 </body>
 </html>

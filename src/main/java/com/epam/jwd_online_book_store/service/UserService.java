@@ -142,19 +142,20 @@ public class UserService {
         return bookOrder;
     }
 
-    public void createBookOrder(int bookId, String login) throws BookException{
-        User user = userDAO.findByLogin(login);
-        List<BookOrder> orders = bookOrderDAO.findAll();
-        int orderId = orders.get(orders.size() - 1).getId();
-        BookOrderBook orderBook = new BookOrderBook(bookId, orderId);
+    public void createBookOrder(int bookId, String login) throws BookException {
         Book book = bookDAO.findById(bookId);
-        if (book.getQuantity() > 0) {
+        if (book == null) {
+            throw new BookException("Incorrect id");
+        }else if (book.getQuantity() > 0) {
+            User user = userDAO.findByLogin(login);
             createOrder(user.getId());
+            List<BookOrder> orders = bookOrderDAO.findAll();
+            int orderId = orders.get(orders.size() - 1).getId();
+            BookOrderBook orderBook = new BookOrderBook(bookId, orderId);
             bookOrderDAO.createBookOrderBook(orderBook);
         } else {
             throw new BookException("We don't have this book in storage");
         }
-//        return orderBook;
     }
 
     public Map<BookOrder, Book> getAllUserOrders(String login) {
@@ -184,7 +185,9 @@ public class UserService {
     public void deleteOrder(int id, String login) throws BookOrderException {
         User user = userDAO.findByLogin(login);
         BookOrder order = bookOrderDAO.findById(id);
-        if (user.getId() == order.getOrderedBy()) {
+        if (order == null) {
+            throw new BookOrderException("Order with this id does not exists");
+        }else if (user.getId() == order.getOrderedBy()) {
             bookOrderDAO.delete(id);
         } else {
             throw new BookOrderException("You can delete only yours orders");

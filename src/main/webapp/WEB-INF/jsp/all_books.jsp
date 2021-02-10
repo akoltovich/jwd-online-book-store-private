@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%--
   Created by IntelliJ IDEA.
   User: alexe
@@ -26,36 +27,88 @@
 </head>
 <body>
 <c:if test="${books != null}">
-    <table class="table">
-    <thead class="thead-dark">
-    <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Author</th>
-        <th scope="col">Date of writing</th>
-        <th scope="col">Price</th>
-        <th scope="col">Price per day</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Preview</th>
-        <th scope="col">Genre</th>
-    </tr>
-    </thead>
-    <c:forEach var="book" items="${books}">
-        <tbody>
+<%--    <sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"--%>
+<%--                       url="jdbc:mysql://localhost:3306/library?serverTimezone=UTC"--%>
+<%--                       user="root" password="postgres"/>--%>
+    <table class="table" id="table">
+        <thead class="thead-dark">
         <tr>
-            <td><c:out value="${book.id}"/></td>
-            <td><c:out value="${book.name}"/></td>
-            <td><c:out value="${book.author}"/></td>
-            <td><c:out value="${book.dateOfWriting}"/></td>
-            <td><c:out value="${book.price}"/></td>
-            <td><c:out value="${book.pricePerDay}"/></td>
-            <td><c:out value="${book.quantity}"/></td>
-            <td><c:out value="${book.preview}"/></td>
-            <td><c:out value="${book.genre}"/></td>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Author</th>
+            <th scope="col">Date of writing</th>
+            <th scope="col">Price</th>
+            <th scope="col">Price per day</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Preview</th>
+            <th scope="col">Genre</th>
         </tr>
-        <br>
-        </tbody>
-    </c:forEach>
+        </thead>
+        <c:forEach var="book" items="${books}">
+<%--            <sql:query dataSource="${dataSource}" var="preview">--%>
+<%--                SELECT preview from BOOK where id=${book.id}--%>
+<%--            </sql:query>--%>
+
+            <tbody>
+            <tr>
+                <td><c:out value="${book.id}"/></td>
+                <td><c:out value="${book.name}"/></td>
+                <td><c:out value="${book.author}"/></td>
+                <td><c:out value="${book.dateOfWriting}"/></td>
+                <td><c:out value="${book.price}"/></td>
+                <td><c:out value="${book.pricePerDay}"/></td>
+                <td><c:out value="${book.quantity}"/></td>
+<%--                <c:set var="modal" scope="application" value="modal"/>--%>
+                <td>
+                    <div id="accordion">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Разворачиваемая панель #1
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="card-body">
+                                    <c:out value="${book.preview}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<%--                    <button type="button" id="modal" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">--%>
+<%--                        Show preview--%>
+<%--                    </button>--%>
+<%--                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"--%>
+<%--                         aria-labelledby="exampleModalLongTitle" aria-hidden="true">--%>
+<%--                        <div class="modal-dialog" role="document">--%>
+<%--                            <div class="modal-content">--%>
+<%--                                <div class="modal-header">--%>
+<%--                                        &lt;%&ndash;                                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>&ndash;%&gt;--%>
+<%--                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--%>
+<%--                                        <span aria-hidden="true">&times;</span>--%>
+<%--                                    </button>--%>
+<%--                                </div>--%>
+<%--                                <div class="modal-body">--%>
+<%--                                        &lt;%&ndash;                                    <c:forEach var="book" items="${books}">&ndash;%&gt;--%>
+<%--                                    <c:out value="${book.preview}"/>--%>
+<%--                                        &lt;%&ndash;                                    </c:forEach>&ndash;%&gt;--%>
+<%--                                </div>--%>
+<%--                                <div class="modal-footer">--%>
+<%--                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--%>
+<%--                                        &lt;%&ndash;                                <button type="button" class="btn btn-primary">Save changes</button>&ndash;%&gt;--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+                </td>
+                    <%--                <td><c:out value="${book.preview}"/></td>--%>
+                <td><c:out value="${book.genre}"/></td>
+            </tr>
+                <%--            <br>--%>
+            </tbody>
+        </c:forEach>
     </table>
 </c:if>
 <c:if test="${empt != null}">
@@ -90,5 +143,12 @@
         <button>To main page</button>
     </a>
 </c:if>
+<%--<script> $('table').on('click', 'tr', function(){--%>
+<%--var idx = $(this).index() + 1;--%>
+<%--$('.modal').hide();--%>
+<%--$('#myModal' + idx).show();--%>
+<%--});--%>
+<%--</script>--%>
 </body>
+
 </html>

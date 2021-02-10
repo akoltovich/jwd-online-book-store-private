@@ -53,50 +53,50 @@
     <div class="form-group row">
         <label for="Password" class="col-sm-2 col-form-label">Password</label>
         <div class="col-sm-5">
-            <input type="password" class="form-control" id="Password1" name="password" placeholder="Enter password">
-            <small id="Password" class="form-text text-muted">Password must contain eight characters, at least one
+            <input type="password" class="form-control" id="Password" name="password" placeholder="Enter password">
+            <small id="Password1" class="form-text text-muted">Password must contain eight characters, at least one
                 letter and one number</small>
         </div>
     </div>
     <div class="form-group row">
-        <label for="FirstName" class="col-sm-2 col-form-label">First name</label>
+        <label for="firstName" class="col-sm-2 col-form-label">First name</label>
         <div class="col-sm-5">
             <input type="text" class="form-control" id="firstName" name="first_name" aria-describedby="Name"
                    placeholder="Enter first name">
         </div>
     </div>
     <div class="form-group row">
-        <label for="LastName" class="col-sm-2 col-form-label">Last name</label>
+        <label for="lastName" class="col-sm-2 col-form-label">Last name</label>
         <div class="col-sm-5">
             <input type="text" class="form-control" id="lastName" name="last_name" aria-describedby="Last"
                    placeholder="Enter last name">
         </div>
-        <fieldset class="form-group row">
-            <div class="row">
-                <legend class="col-form-label col-sm-2 pt-0">Role</legend>
-                <div class="col-sm-10">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="role_id" id="gridRadios1" value="1"
-                               checked>
-                        <label class="form-check-label" for="gridRadios1">
-                            Admin
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="role_id" id="gridRadios2" value="2">
-                        <label class="form-check-label" for="gridRadios2">
-                            User
-                        </label>
-                    </div>
+    </div>
+    <fieldset class="form-group">
+        <div class="row">
+            <legend class="col-form-label col-sm-2 pt-0">Role</legend>
+            <div class="col-sm-5">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="role_id" id="gridRadios1" value="1">
+                    <label class="form-check-label" for="gridRadios1">
+                        Admin
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="role_id" id="gridRadios2" value="2" checked>
+                    <label class="form-check-label" for="gridRadios2">
+                        User
+                    </label>
                 </div>
             </div>
-        </fieldset>
-        <div class="form-group row">
-            <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">Sign up</button>
-            </div>
+        </div>
+    </fieldset>
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Sign up</button>
         </div>
     </div>
+    <%--    </div>--%>
 </form>
 <%--        <button type="submit" class="btn btn-primary">Sign up!</button>--%>
 <%--</form>--%>

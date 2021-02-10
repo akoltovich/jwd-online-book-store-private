@@ -24,20 +24,46 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-This is sign in page
+<%--<form method="post">--%>
+<%--    Login:--%>
+<%--    <input type="email" name="login">--%>
+<%--    <br>--%>
+<%--    Password:--%>
+<%--    <input type="password" name="password">--%>
+<%--    <br>--%>
+<%--    <a href="home?command=sign_in">--%>
+<%--        <button>Sign in!</button>--%>
+<%--    </a>--%>
+<%--</form>--%>
 <form method="post">
-    Login:
-    <input type="email" name="login">
-    <br>
-    Password:
-    <input type="password" name="password">
-    <br>
-    <a href="home?command=sign_in">
-        <button>Sign in!</button>
-    </a>
+    <div class="form-group row">
+        <label for="Email" class="col-sm-2 col-form-label">Email address</label>
+        <div class="col-sm-5">
+            <input type="email" class="form-control" id="Email" name="login" aria-describedby="emailHelp"
+                   placeholder="Enter email">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Password" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-5">
+            <input type="password" class="form-control" id="Password" name="password" placeholder="Enter password">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Sign in</button>
+        </div>
+    </div>
 </form>
-<a href="home?command=user_change_password">
-    <button>Forgot my password</button>
-</a>
+<div class="form-group row">
+    <div class="col-sm-10">
+        <a href="home?command=user_change_password">
+            <button class="btn btn-primary">Forgot my password</button>
+        </a>
+    </div>
+</div>
+<%--<a href="home?command=user_change_password">--%>
+<%--    <button>Forgot my password</button>--%>
+<%--</a>--%>
 </body>
 </html>

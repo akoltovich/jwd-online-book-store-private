@@ -24,9 +24,6 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-Hello,boss
-${sessionScope.user.firstName}
-${sessionScope.user.lastName}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <%--    <a class="navbar-brand" href="home?command=main_page">Main page</a>--%>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"

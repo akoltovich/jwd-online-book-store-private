@@ -16,6 +16,11 @@ public class Configuration {
         init();
     }
 
+//    public Configuration (CfgProp propertires) {
+//        login = propertires.login();
+//
+//    }
+
     private static Configuration configuration;
 
     public static Configuration getInstance() {

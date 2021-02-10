@@ -12,6 +12,7 @@ public class DeleteOrderCommand implements Command {
 
     private static final ResponseContext DELETE_ORDER = new ResponseContextImpl(PathToPages.DELETE_ORDER, ResponseContext.ResponseType.FORWARD);
     private static final ResponseContext SHOW_ALL_USER_ORDERS_REDIRECT = new ResponseContextImpl(PathToPages.SHOW_ALL_USER_ORDERS_REDIRECT, ResponseContext.ResponseType.REDIRECT);
+    private static final ResponseContext ERROR_PAGE = new ResponseContextImpl(PathToPages.ERROR500_PAGE, ResponseContext.ResponseType.FORWARD);
 
     @Override
     public ResponseContext execute(RequestContext requestContext) {
@@ -26,6 +27,7 @@ public class DeleteOrderCommand implements Command {
         } catch (BookOrderException e) {
             e.printStackTrace();
             requestContext.setAttribute("exception", e);
+            return ERROR_PAGE;
         }
         return SHOW_ALL_USER_ORDERS_REDIRECT;
     }
