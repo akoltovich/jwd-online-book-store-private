@@ -22,8 +22,6 @@ public interface BookOrderDAO extends GeneralDAO<BookOrder> {
 
     List<BookOrder> findByOrderStatus(String status);
 
-//    List<BookOrderBook> findAllUserOrders(int orderedBy);
-
     @Override
     void create(BookOrder bookOrder);
 

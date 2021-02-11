@@ -28,7 +28,7 @@
     Id of order that you want complete:
     <input type="number" name="order_id">
     <br>
-    <input type="submit">
+    <button type="submit">Complete order</button>
 </form>
 </body>
 </html>

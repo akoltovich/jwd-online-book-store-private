@@ -27,8 +27,7 @@
 <form method="post">
     Input login of user who you want unban!
     <input type="text" name="login">
-    <br>
-    <input type="submit">
+    <button type="submit">Unban</button>
 </form>
 </body>
 </html>

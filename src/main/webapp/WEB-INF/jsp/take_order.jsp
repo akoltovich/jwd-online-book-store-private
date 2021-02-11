@@ -27,8 +27,7 @@
 <form method="post">
     Id of order that you want take:
     <input type="number" name="order_id">
-    <br>
-    <input type="submit">
+    <button type="submit">Take order!</button>
 </form>
 
 </body>

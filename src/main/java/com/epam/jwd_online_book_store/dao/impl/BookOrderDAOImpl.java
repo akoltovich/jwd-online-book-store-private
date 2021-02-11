@@ -29,15 +29,10 @@ public class BookOrderDAOImpl implements BookOrderDAO {
     private static final String SQL_FIND_BOOK_ORDERS_BY_ORDER_ID = "select * from book_order_book where order_id=?";
     private static final String SQL_FIND_ORDERS_BY_ADMIN_ID = "select * from book_order where verified_by=?";
     private static final String SQL_FIND_ALL_ORDERS = "select * from book_order";
-    //    private static final String SQL_CREATE_ORDER = "insert into book_order (id,date_of_creation" +
-//            ",ordered_by,verified_by,order_complete_date,order_status) values (?,?,?,?,?,?)";
     private static final String SQL_CREATE_ORDER = "insert into book_order (id,date_of_creation" +
             ",ordered_by,order_status) values (?,?,?,?)";
     private static final String SQL_DELETE_ORDER = "delete from book_order where id=?";
-    //    private static final String SQL_UPDATE_ORDER = "update book_order set date_of_creation=?,ordered_by=?," +
-//            "verified_by=?,order_complete_date=?,order_status=? where id=?";
     private static final String SQL_UPDATE_ORDER = "update book_order set verified_by=?,order_complete_date=?,order_status=? where id=?";
-    //    private static final String SQL_CREATE_BOOK_ORDER_BOOK = "insert into book_order_book (book_id,order_id) select b.id,o.id from book b,book_order o where b.id=? and o.id=?"
     private static final String SQL_CREATE_BOOK_ORDER_BOOK = "insert into book_order_book (book_id,order_id) values (?,?)";
     private static final String SQL_FIND_ORDER_BY_STATUS = "select * from book_order where order_status=?";
 
@@ -157,38 +152,6 @@ public class BookOrderDAOImpl implements BookOrderDAO {
         return bookOrderBook;
     }
 
-    //    @Override
-//    public void create(BookOrder bookOrder) {
-//        Connection connection = DataSource.getConnection();
-//        try {
-//            PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_ORDER);
-//            preparedStatement.setInt(1, bookOrder.getId());
-//            preparedStatement.setDate(2, bookOrder.getDateOfCreation());
-//            preparedStatement.setInt(3, bookOrder.getOrderedBy());
-//            preparedStatement.setInt(4, bookOrder.getVerifiedBy());
-//            preparedStatement.setDate(5, bookOrder.getOrderCompleteDate());
-//            preparedStatement.setString(6, bookOrder.getBookOrderStatus());
-//            preparedStatement.executeUpdate();
-//            CloseUtil.customClose(connection, preparedStatement);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//    @Override
-//    public void create(BookOrder bookOrder) {
-//        Connection connection = DataSource.getConnection();
-//        try {
-//            PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_ORDER);
-//            preparedStatement.setInt(1, bookOrder.getId());
-//            preparedStatement.setDate(2, bookOrder.getDateOfCreation());
-//            preparedStatement.setInt(3, bookOrder.getOrderedBy());
-//            preparedStatement.setString(4, bookOrder.getBookOrderStatus());
-//            preparedStatement.executeUpdate();
-//            CloseUtil.customClose(connection, preparedStatement);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
     @Override
     public void create(BookOrder bookOrder) {
         Connection connection = DataSource.getConnection();

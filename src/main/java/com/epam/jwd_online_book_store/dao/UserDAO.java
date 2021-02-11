@@ -14,9 +14,6 @@ public interface UserDAO extends GeneralDAO<User> {
     @Override
     void create(User user);
 
-//    @Override
-//    void delete(String name);
-
     @Override
     void delete(int id);
 

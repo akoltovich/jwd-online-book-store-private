@@ -26,46 +26,50 @@
 </head>
 <body>
 <form method="post">
+    Input email:
     <input type="text" name="login">
     <button type="submit">Find</button>
 </form>
 <c:if test="${requestScope.user != null}">
-<table class="table">
-    <thead class="thead-dark">
-    <tr>
-        <th scope="col">Email</th>
-        <th scope="col">First name</th>
-        <th scope="col">Last name</th>
-        <th scope="col">Is banned</th>
-    </tr>
-    </thead>
-    <tr>
-        <tbody>
+    <table class="table">
+        <thead class="thead-dark">
         <tr>
-            <td><c:out value="${requestScope.user.login}"/></td>
-            <td><c:out value="${requestScope.user.firstName}"/></td>
-            <td><c:out value="${requestScope.user.lastName}"/></td>
-            <c:if test="${requestScope.user.banned == false}">
-                <td><c:out value="Not in ban"/></td>
-            </c:if>
-            <c:if test="${requestScope.user.banned == true}">
-                <td><c:out value="In ban"/></td>
-            </c:if>
+            <th scope="col">Email</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Is banned</th>
         </tr>
-        </tbody>
-        </c:if>
-</table>
+        </thead>
+        <tr>
+            <tbody>
+            <tr>
+                <td><c:out value="${requestScope.user.login}"/></td>
+                <td><c:out value="${requestScope.user.firstName}"/></td>
+                <td><c:out value="${requestScope.user.lastName}"/></td>
+                <c:if test="${requestScope.user.banned == false}">
+                    <td><c:out value="Not in ban"/></td>
+                </c:if>
+                <c:if test="${requestScope.user.banned == true}">
+                    <td><c:out value="In ban"/></td>
+                </c:if>
+            </tr>
+            </tbody>
+    </table>
+    <a href="home?command=ban_user">
+        <button>Ban user!</button>
+    </a>
+    <a href="home?command=unban_user">
+        <button>Unban user!</button>
+    </a>
+    <a href="home?command=admin_page">
+        <button>To main page</button>
+    </a>
+</c:if>
 <c:if test="${empt != null}">
     <c:out value="${empt}"/>
+    <a href="home?command=admin_page">
+        <button>To main page</button>
+    </a>
 </c:if>
-<a href="home?command=admin_page">
-    <button>To admin menu</button>
-</a>
-<a href="home?command=ban_user">
-    <button>Ban user!</button>
-</a>
-<a href="home?command=unban_user">
-    <button>Unban user!</button>
-</a>
 </body>
 </html>

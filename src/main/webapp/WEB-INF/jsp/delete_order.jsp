@@ -27,8 +27,7 @@
 <form method="post">
     Input id of deleted order
     <input type="number" name="order_id">
-    <br>
-    <input type="submit">
+    <button type="submit">Delete order</button>
 </form>
 
 </body>

@@ -5,7 +5,6 @@ import com.epam.jwd_online_book_store.controller.command.Command;
 import com.epam.jwd_online_book_store.controller.command.RequestContext;
 import com.epam.jwd_online_book_store.controller.command.ResponseContext;
 import com.epam.jwd_online_book_store.dto.UserDTO;
-import com.epam.jwd_online_book_store.exception.UserException;
 import com.epam.jwd_online_book_store.service.UserService;
 
 import javax.servlet.http.HttpSession;
@@ -19,11 +18,7 @@ public class SelfDeleteCommand implements Command {
         UserService service = UserService.getInstance();
         HttpSession session = requestContext.getSession();
         UserDTO user = (UserDTO) session.getAttribute("user");
-//        try {
-            service.selfDelete(user);
-//        } catch (UserException e) {
-//            e.printStackTrace();
-//        }
+        service.selfDelete(user);
         return MAIN_PAGE;
     }
 }

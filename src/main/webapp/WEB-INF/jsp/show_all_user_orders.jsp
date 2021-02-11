@@ -46,33 +46,46 @@
         <c:forEach items="${orders}" var="order">
             <tbody>
             <tr>
-            <td><c:out value="${order.key.id}"/></td>
-            <td><c:out value="${order.key.dateOfCreation}"/></td>
-            <c:if test="${order.key.orderCompleteDate != null}">
+                <td><c:out value="${order.key.id}"/></td>
+                <td><c:out value="${order.key.dateOfCreation}"/></td>
                 <td><c:out value="${order.key.orderCompleteDate}"/></td>
-            </c:if>
-            <td><c:out value="${order.key.bookOrderStatus}"/></td>
-            <td><c:out value="${order.value.name}"/></td>
-            <td><c:out value="${order.value.author}"/></td>
-            <td><c:out value="${order.value.dateOfWriting}"/></td>
-            <td><c:out value="${order.value.price}"/></td>
-            <td><c:out value="${order.value.pricePerDay}"/></td>
-            <td><c:out value="${order.value.quantity}"/></td>
-            <td><c:out value="${order.value.preview}"/></td>
-            <td><c:out value="${order.value.genre}"/></td>
+                <td><c:out value="${order.key.bookOrderStatus}"/></td>
+                <td><c:out value="${order.value.name}"/></td>
+                <td><c:out value="${order.value.author}"/></td>
+                <td><c:out value="${order.value.dateOfWriting}"/></td>
+                <td><c:out value="${order.value.price}"/></td>
+                <td><c:out value="${order.value.pricePerDay}"/></td>
+                <td><c:out value="${order.value.quantity}"/></td>
+                <td width="700">
+                    <p>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                data-target="#collapseE" aria-expanded="false" aria-controls="collapseE">
+                            Show preview
+                        </button>
+                    </p>
+                    <div class="collapse" id="collapseE">
+                        <div class="card card-body">
+                            <c:out value=" ${order.value.preview}"/>
+                        </div>
+                    </div>
+                </td>
+                <td><c:out value="${order.value.genre}"/></td>
             </tr>
             </tbody>
         </c:forEach>
     </table>
+    <a href="home?command=delete_order">
+        <button>Delete my order</button>
+    </a>
+    <a href="home?command=user_page">
+        <button>To main page</button>
+    </a>
 </c:if>
 <c:if test="${empt != null}">
     <c:out value="${empt}"/>
+    <a href="home?command=user_page">
+        <button>To main page</button>
+    </a>
 </c:if>
-<a href="home?command=user_page">
-    <button>To user page!</button>
-</a>
-<a href="home?command=delete_order">
-    <button>Delete my order!</button>
-</a>
 </body>
 </html>

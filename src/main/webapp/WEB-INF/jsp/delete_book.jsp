@@ -27,7 +27,6 @@
 <form method="post">
     Input id of book that you wand delete
     <input type="number" name="id">
-    <br>
     <a href="home?command=delete_book">
         <button>Delete this book!</button>
     </a>

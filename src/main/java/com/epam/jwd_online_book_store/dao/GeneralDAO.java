@@ -9,8 +9,6 @@ public interface GeneralDAO<T> {
 
     void create(T t);
 
-//    void delete(String name);
-
     void delete(int id);
 
     void update(int id, T t);

@@ -8,6 +8,7 @@ import com.epam.jwd_online_book_store.controller.command.ResponseContext;
 public class UserPageCommand implements Command {
 
     private static final ResponseContext USER_PAGE = new ResponseContextImpl(PathToPages.USER_PAGE, ResponseContext.ResponseType.FORWARD);
+
     @Override
     public ResponseContext execute(RequestContext requestContext) {
         return USER_PAGE;

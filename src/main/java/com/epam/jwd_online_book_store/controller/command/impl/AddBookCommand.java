@@ -29,8 +29,20 @@ public class AddBookCommand implements Command {
         String quantity = requestContext.getParameter("quantity");
         String preview = requestContext.getParameter("preview");
         String genre = requestContext.getParameter("genre");
+        Date parseDate = null;
+        double parsePrice = 0;
+        int parseQuantity = 0;
+        if (!dateOfWriting.equals("")) {
+            parseDate = Date.valueOf(dateOfWriting);
+        }
+        if (!price.equals("")) {
+            parsePrice = Double.parseDouble(price);
+        }
+        if (!quantity.equals("")) {
+            parseQuantity = Integer.parseInt(quantity);
+        }
         try {
-            service.addBook(new Book(name, author, Date.valueOf(dateOfWriting), Double.parseDouble(price), Integer.parseInt(quantity), preview, genre));
+            service.addBook(new Book(name, author, parseDate, parsePrice, parseQuantity, preview, genre));
         } catch (BookException e) {
             e.printStackTrace();
             requestContext.setAttribute("exception", e);

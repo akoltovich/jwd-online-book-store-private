@@ -5,8 +5,6 @@ import com.epam.jwd_online_book_store.controller.command.Command;
 import com.epam.jwd_online_book_store.controller.command.RequestContext;
 import com.epam.jwd_online_book_store.controller.command.ResponseContext;
 import com.epam.jwd_online_book_store.domain.Book;
-import com.epam.jwd_online_book_store.dto.BookDTO;
-import com.epam.jwd_online_book_store.exception.BookException;
 import com.epam.jwd_online_book_store.service.UserService;
 
 import java.util.List;
@@ -14,7 +12,6 @@ import java.util.List;
 public class FindBooksByNameCommand implements Command {
 
     private final static ResponseContext BOOKS_BY_NAME = new ResponseContextImpl(PathToPages.BOOKS_FIND_BY_NAME, ResponseContext.ResponseType.FORWARD);
-    private final static ResponseContext BOOKS_BY_NAME_REDIRECT = new ResponseContextImpl(PathToPages.BOOKS_FIND_BY_NAME_REDIRECT, ResponseContext.ResponseType.REDIRECT);
 
     @Override
     public ResponseContext execute(RequestContext requestContext) {
@@ -23,7 +20,6 @@ public class FindBooksByNameCommand implements Command {
         }
         UserService userService = UserService.getInstance();
         String name = requestContext.getParameter("name");
-//        try {
         List<Book> books = userService.findBooksByName(name);
         if (!books.isEmpty()) {
             requestContext.setAttribute("books", books);
@@ -31,9 +27,6 @@ public class FindBooksByNameCommand implements Command {
             String empty = "Sorry, we don't have books with this name";
             requestContext.setAttribute("empt", empty);
         }
-//        } catch (BookException e) {
-//            e.printStackTrace();
-//        }
         return BOOKS_BY_NAME;
     }
 }

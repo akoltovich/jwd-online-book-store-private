@@ -26,73 +26,98 @@
 </head>
 <body>
 <form method="post">
+    Input genre:
     <input type="text" name="genre">
     <button type="submit">Find</button>
 </form>
 <c:if test="${books != null}">
-<table class="table">
-    <thead class="thead-dark">
-    <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Author</th>
-        <th scope="col">Date of writing</th>
-        <th scope="col">Price</th>
-        <th scope="col">Price per day</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Preview</th>
-        <th scope="col">Genre</th>
-    </tr>
-    </thead>
-    <c:forEach var="book" items="${books}">
-    <tbody>
-    <tr>
-        <td><c:out value="${book.id}"/></td>
-        <td><c:out value="${book.name}"/></td>
-        <td><c:out value="${book.author}"/></td>
-        <td><c:out value="${book.dateOfWriting}"/></td>
-        <td><c:out value="${book.price}"/></td>
-        <td><c:out value="${book.pricePerDay}"/></td>
-        <td><c:out value="${book.quantity}"/></td>
-        <td><c:out value="${book.preview}"/></td>
-        <td><c:out value="${book.genre}"/></td>
-    </tr>
-    <br>
-    </tbody>
-    </c:forEach>
-</table>
-</c:if>
-    <c:if test="${empt != null}">
-        <c:out value="${empt}"/>
-    </c:if>
+    <table class="table" id="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Author</th>
+            <th scope="col">Date of writing</th>
+            <th scope="col">Price</th>
+            <th scope="col">Price per day</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Preview</th>
+            <th scope="col">Genre</th>
+        </tr>
+        </thead>
+        <c:forEach var="book" items="${books}">
+            <tbody>
+            <tr>
+                <td><c:out value="${book.id}"/></td>
+                <td><c:out value="${book.name}"/></td>
+                <td><c:out value="${book.author}"/></td>
+                <td><c:out value="${book.dateOfWriting}"/></td>
+                <td><c:out value="${book.price}"/></td>
+                <td><c:out value="${book.pricePerDay}"/></td>
+                <td><c:out value="${book.quantity}"/></td>
+                <td width="700">
+                    <p>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                data-target="#collapseE" aria-expanded="false" aria-controls="collapseE">
+                            Show preview
+                        </button>
+                    </p>
+                    <div class="collapse" id="collapseE">
+                        <div class="card card-body">
+                            <c:out value=" ${book.preview}"/>
+                        </div>
+                    </div>
+                </td>
+                <td><c:out value="${book.genre}"/></td>
+            </tr>
+            </tbody>
+        </c:forEach>
+    </table>
     <c:if test="${sessionScope.user.roleId == 1}">
-    <a href="home?command=admin_page">
-        <button>To admin page</button>
-    </a>
-    <br>
-    <a href="home?command=delete_book">
-        <button>Delete book!</button>
-    </a>
-    <a href="home?command=add_book">
-        <button>Add new book in the store!</button>
-    </a>
-    <a href="home?command=update_book">
-        <button>Update book!</button>
-    </a>
+        <a href="home?command=delete_book">
+            <button>Delete book!</button>
+        </a>
+        <a href="home?command=add_book">
+            <button>Add new book in the store!</button>
+        </a>
+        <a href="home?command=update_book">
+            <button>Update book!</button>
+        </a>
+        <a href="home?command=admin_page">
+            <button>To main page</button>
+        </a>
     </c:if>
     <c:if test="${sessionScope.user.roleId == 2}">
-    <a href="home?command=user_page">
-        <button>To user page</button>
-    </a>
-    <br>
-    <a href="home?command=order_book">
-        <button>Order book!</button>
-    </a>
+        <a href="home?command=order_book">
+            <button>Order book!</button>
+        </a>
+        <a href="home?command=user_page">
+            <button>To main page</button>
+        </a>
     </c:if>
     <c:if test="${sessionScope.user == null}">
-    <a href="home?command=main_page">
-        <button>To main page</button>
-    </a>
+        <a href="home?command=main_page">
+            <button>To main page</button>
+        </a>
     </c:if>
+</c:if>
+<c:if test="${empt != null}">
+    <c:out value="${empt}"/>
+    <c:if test="${sessionScope.user.roleId == 1}">
+        <a href="home?command=admin_page">
+            <button>To main page</button>
+        </a>
+    </c:if>
+    <c:if test="${sessionScope.user.roleId == 2}">
+        <a href="home?command=user_page">
+            <button>To main page</button>
+        </a>
+    </c:if>
+    <c:if test="${sessionScope.user == null}">
+        <a href="home?command=main_page">
+            <button>To main page</button>
+        </a>
+    </c:if>
+</c:if>
 </body>
 </html>

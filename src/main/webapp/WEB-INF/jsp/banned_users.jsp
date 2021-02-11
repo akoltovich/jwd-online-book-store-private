@@ -52,15 +52,18 @@
             <br>
         </c:forEach>
     </table>
+    <a href="home?command=unban_user">
+        <button>Unban user!</button>
+    </a>
+    <a href="home?command=admin_page">
+        <button>To main page</button>
+    </a>
 </c:if>
 <c:if test="${empt != null}">
     <c:out value="${empt}"/>
+    <a href="home?command=admin_page">
+        <button>To main page</button>
+    </a>
 </c:if>
-<a href="home?command=unban_user">
-    <button>Unban user!</button>
-</a>
-<a href="home?command=admin_page">
-    <button>To main menu</button>
-</a>
 </body>
 </html>

@@ -4,7 +4,6 @@ import com.epam.jwd_online_book_store.context.PathToPages;
 import com.epam.jwd_online_book_store.controller.command.Command;
 import com.epam.jwd_online_book_store.controller.command.RequestContext;
 import com.epam.jwd_online_book_store.controller.command.ResponseContext;
-import com.epam.jwd_online_book_store.domain.Book;
 import com.epam.jwd_online_book_store.exception.BookException;
 import com.epam.jwd_online_book_store.service.AdminService;
 
@@ -13,8 +12,8 @@ import java.sql.Date;
 public class UpdateBookCommand implements Command {
 
     private static final ResponseContext UPDATE_BOOK = new ResponseContextImpl(PathToPages.UPDATE_BOOK, ResponseContext.ResponseType.FORWARD);
-    private static final ResponseContext ADMIN_AREA_REDIRECT = new ResponseContextImpl(PathToPages.ADMIN_AREA_REDIRECT, ResponseContext.ResponseType.REDIRECT);
     private static final ResponseContext ERROR_PAGE = new ResponseContextImpl(PathToPages.ERROR500_PAGE, ResponseContext.ResponseType.FORWARD);
+    private static final ResponseContext ADMIN_PAGE_REDIRECT = new ResponseContextImpl(PathToPages.ADMIN_PAGE_REDIRECT, ResponseContext.ResponseType.REDIRECT);
 
     @Override
     public ResponseContext execute(RequestContext requestContext) {
@@ -30,9 +29,13 @@ public class UpdateBookCommand implements Command {
         String quantity = requestContext.getParameter("quantity");
         String preview = requestContext.getParameter("preview");
         String genre = requestContext.getParameter("genre");
+        int parseId = 0;
         Date newDate = null;
         double newPrice = 0;
         int newQuantity = 0;
+        if (!id.equals("")) {
+            parseId = Integer.parseInt(id);
+        }
         if (!dateOfWriting.equals("")) {
             newDate = Date.valueOf(dateOfWriting);
         }
@@ -43,12 +46,12 @@ public class UpdateBookCommand implements Command {
             newQuantity = Integer.parseInt(quantity);
         }
         try {
-            service.updateBook(Integer.parseInt(id), name, author, newDate, newPrice, newQuantity, preview, genre);
+            service.updateBook(parseId, name, author, newDate, newPrice, newQuantity, preview, genre);
         } catch (BookException e) {
             e.printStackTrace();
             requestContext.setAttribute("exception", e);
             return ERROR_PAGE;
         }
-        return ADMIN_AREA_REDIRECT;
+        return ADMIN_PAGE_REDIRECT;
     }
 }

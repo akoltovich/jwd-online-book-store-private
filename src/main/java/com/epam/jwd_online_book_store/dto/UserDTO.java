@@ -2,7 +2,6 @@ package com.epam.jwd_online_book_store.dto;
 
 public class UserDTO {
     private String login;
-    private String password;
     private String firstName;
     private String lastName;
     private int roleId;
@@ -11,9 +10,8 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(String login, String password, String firstName, String lastName, int roleId) {
+    public UserDTO(String login, String firstName, String lastName, int roleId) {
         this.login = login;
-        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.roleId = roleId;
@@ -26,14 +24,6 @@ public class UserDTO {
 
     public void setLogin(String login) {
         this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getFirstName() {
@@ -72,7 +62,7 @@ public class UserDTO {
     public String toString() {
         return "UserDTO{" +
                 "login='" + login + '\'' +
-                ", password='" + password + '\'' +
+//                ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", roleId=" + roleId +

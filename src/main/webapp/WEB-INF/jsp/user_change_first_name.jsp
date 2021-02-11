@@ -27,7 +27,6 @@
 <form method="post">
     Input new first name:
     <input type="text" name="new_first_name">
-    <br>
     <button type="submit">Change my first name!</button>
 </form>
 

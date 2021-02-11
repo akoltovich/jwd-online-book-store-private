@@ -13,20 +13,5 @@
 </head>
 <body>
 <c:redirect url="home?command=main_page"/>
-<%--Welcome comrade--%>
-<%--<a href="home?command=main_page">--%>
-<%--    <button>To start page</button>--%>
-<%--</a>--%>
-<%--<a href="home?command=registration">--%>
-<%--    <button>Sign Up</button>--%>
-<%--</a>--%>
-<%--<a href="home?command=sign_in">--%>
-<%--    <button>Sign In</button>--%>
-<%--</a>--%>
-<%--<a href="home?command=error">--%>
-<%--    <button>Error page</button>--%>
-<%--</a>--%>
-
-
 </body>
 </html>

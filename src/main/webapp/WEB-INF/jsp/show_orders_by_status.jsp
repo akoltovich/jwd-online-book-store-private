@@ -38,29 +38,29 @@
         <c:forEach var="order" items="${orders}">
             <tbody>
             <tr>
-            <td><c:out value="${order.id}"/></td>
-            <td><c:out value="${order.dateOfCreation}"/></td>
-            <c:if test="${order.orderCompleteDate != null}">
+                <td><c:out value="${order.id}"/></td>
+                <td><c:out value="${order.dateOfCreation}"/></td>
                 <td><c:out value="${order.orderCompleteDate}"/></td>
-            </c:if>
-            <td><c:out value="${order.bookOrderStatus}"/></td>
+                <td><c:out value="${order.bookOrderStatus}"/></td>
             </tr>
             </tbody>
         </c:forEach>
     </table>
-
+    <a href="home?command=take_order">
+        <button>Take order</button>
+    </a>
+    <a href="home?command=complete_order">
+        <button>Complete order</button>
+    </a>
+    <a href="home?command=admin_page">
+        <button>To main page</button>
+    </a>
 </c:if>
 <c:if test="${empt != null}">
     <c:out value="${empt}"/>
+    <a href="home?command=admin_page">
+        <button>To main page</button>
+    </a>
 </c:if>
-<a href="home?command=admin_page">
-    <button>To admin page</button>
-</a>
-<a href="home?command=take_order">
-    <button>Take order!</button>
-</a>
-<a href="home?command=complete_order">
-    <button>Complete order!</button>
-</a>
 </body>
 </html>

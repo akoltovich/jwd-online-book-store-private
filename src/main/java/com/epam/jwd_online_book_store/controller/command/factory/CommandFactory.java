@@ -57,8 +57,6 @@ public class CommandFactory {
                 return new UserChangeLoginCommand();
             case DELETE_BOOK:
                 return new DeleteBookCommand();
-//            case BOOK_DETAILS:
-//                return new BookDetailsCommand();
             case ADD_BOOK:
                 return new AddBookCommand();
             case UPDATE_BOOK:

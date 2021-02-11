@@ -25,9 +25,8 @@
 </head>
 <body>
 <form method="post">
-    Input new login name:
+    Input new email:
     <input type="email" name="new_login">
-    <br>
     <button type="submit">Change my login!</button>
 </form>
 </body>

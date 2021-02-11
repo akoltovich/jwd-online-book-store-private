@@ -24,17 +24,6 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<%--<form method="post">--%>
-<%--    Login:--%>
-<%--    <input type="email" name="login">--%>
-<%--    <br>--%>
-<%--    Password:--%>
-<%--    <input type="password" name="password">--%>
-<%--    <br>--%>
-<%--    <a href="home?command=sign_in">--%>
-<%--        <button>Sign in!</button>--%>
-<%--    </a>--%>
-<%--</form>--%>
 <form method="post">
     <div class="form-group row">
         <label for="Email" class="col-sm-2 col-form-label">Email address</label>
@@ -62,8 +51,12 @@
         </a>
     </div>
 </div>
-<%--<a href="home?command=user_change_password">--%>
-<%--    <button>Forgot my password</button>--%>
-<%--</a>--%>
+<div class="form-group row">
+    <div class="col-sm-10">
+        <a href="home?command=registration">
+            <button class="btn btn-primary">Sign up</button>
+        </a>
+    </div>
+</div>
 </body>
 </html>

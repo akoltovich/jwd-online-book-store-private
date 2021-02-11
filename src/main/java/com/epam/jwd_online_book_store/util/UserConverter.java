@@ -11,7 +11,6 @@ public class UserConverter {
     public static UserDTO userToUserDTO(User user) {
         UserDTO userDTO = new UserDTO();
         userDTO.setLogin(user.getLogin());
-        userDTO.setPassword(user.getPassword());
         userDTO.setFirstName(user.getFirstName());
         userDTO.setLastName(user.getLastName());
         userDTO.setRoleId(user.getRoleId());
@@ -21,10 +20,9 @@ public class UserConverter {
 
     public static List<UserDTO> listOfUserToListOfUserDTO(List<User> users) {
         List<UserDTO> userDTOS = new ArrayList<>();
-        for (User user: users) {
+        for (User user : users) {
             UserDTO userDTO = new UserDTO();
             userDTO.setLogin(user.getLogin());
-            userDTO.setPassword(user.getPassword());
             userDTO.setFirstName(user.getFirstName());
             userDTO.setLastName(user.getLastName());
             userDTO.setRoleId(user.getRoleId());
@@ -37,7 +35,6 @@ public class UserConverter {
     public static User userDTOToUser(UserDTO userDTO) {
         User user = new User();
         user.setLogin(userDTO.getLogin());
-        user.setPassword(userDTO.getPassword());
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
         user.setRoleId(userDTO.getRoleId());
@@ -50,7 +47,6 @@ public class UserConverter {
         for (UserDTO userDTO : userDTOS) {
             User user = new User();
             user.setLogin(userDTO.getLogin());
-            user.setPassword(userDTO.getPassword());
             user.setFirstName(userDTO.getFirstName());
             user.setLastName(userDTO.getLastName());
             user.setRoleId(userDTO.getRoleId());

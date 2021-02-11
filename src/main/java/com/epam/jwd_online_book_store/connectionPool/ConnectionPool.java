@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Objects;
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -18,7 +17,6 @@ public class ConnectionPool {
         return instance;
     }
 
-    //    BlockingQueue<Connection> availableConnections = new ArrayBlockingQueue<>(20);
     Configuration configuration = Configuration.getInstance();
     BlockingQueue<Connection> availableConnections = new LinkedBlockingQueue<>(configuration.maxConnections);
 

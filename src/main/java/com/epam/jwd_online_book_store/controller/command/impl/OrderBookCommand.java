@@ -6,7 +6,6 @@ import com.epam.jwd_online_book_store.controller.command.RequestContext;
 import com.epam.jwd_online_book_store.controller.command.ResponseContext;
 import com.epam.jwd_online_book_store.dto.UserDTO;
 import com.epam.jwd_online_book_store.exception.BookException;
-import com.epam.jwd_online_book_store.service.AdminService;
 import com.epam.jwd_online_book_store.service.UserService;
 
 public class OrderBookCommand implements Command {

@@ -25,7 +25,6 @@ public enum CommandType {
     USER_CHANGE_LOGIN("user_change_login"),
     USER_CHANGE_PASSWORD("user_change_password"),
     DELETE_BOOK("delete_book"),
-    BOOK_DETAILS("book_details"),
     ADD_BOOK("add_book"),
     UPDATE_BOOK("update_book"),
     BAN_USER("ban_user"),

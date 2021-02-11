@@ -5,8 +5,6 @@ import com.epam.jwd_online_book_store.controller.command.Command;
 import com.epam.jwd_online_book_store.controller.command.RequestContext;
 import com.epam.jwd_online_book_store.controller.command.ResponseContext;
 import com.epam.jwd_online_book_store.domain.Book;
-import com.epam.jwd_online_book_store.dto.BookDTO;
-import com.epam.jwd_online_book_store.exception.BookException;
 import com.epam.jwd_online_book_store.service.UserService;
 
 import java.util.List;
@@ -18,7 +16,6 @@ public class ShowAllBooksCommand implements Command {
     @Override
     public ResponseContext execute(RequestContext requestContext) {
         UserService service = UserService.getInstance();
-//        try {
         List<Book> books = service.findAllBooks();
         if (!books.isEmpty()) {
             requestContext.setAttribute("books", books);
@@ -26,9 +23,6 @@ public class ShowAllBooksCommand implements Command {
             String empty = "Sorry, we don't have books at all";
             requestContext.setAttribute("empt", empty);
         }
-//        } catch (BookException e) {
-//            e.printStackTrace();
-//        }
         return ALL_BOOKS;
     }
 }

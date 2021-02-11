@@ -28,7 +28,6 @@
 <form method="post">
     Last name:
     <input type="text" name="last_name">
-    <br>
     <button type="submit">Find</button>
 </form>
 <c:if test="${users != null}">
@@ -58,18 +57,21 @@
             <br>
         </c:forEach>
     </table>
+    <a href="home?command=ban_user">
+        <button>Ban user!</button>
+    </a>
+    <a href="home?command=unban_user">
+        <button>Unban user!</button>
+    </a>
+    <a href="home?command=admin_page">
+        <button>To main page</button>
+    </a>
 </c:if>
 <c:if test="${empt != null}">
     <c:out value="${empt}"/>
+    <a href="home?command=admin_page">
+        <button>To main page</button>
+    </a>
 </c:if>
-<a href="home?command=admin_page">
-    <button>To admin menu</button>
-</a>
-<a href="home?command=ban_user">
-    <button>Ban user!</button>
-</a>
-<a href="home?command=unban_user">
-    <button>Unban user!</button>
-</a>
 </body>
 </html>

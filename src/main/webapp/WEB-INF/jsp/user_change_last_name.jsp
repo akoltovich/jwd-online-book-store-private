@@ -27,7 +27,6 @@
 <form method="post">
     Input new last name:
     <input type="text" name="new_last_name">
-    <br>
     <button type="submit">Change my last name!</button>
 </form>
 </body>

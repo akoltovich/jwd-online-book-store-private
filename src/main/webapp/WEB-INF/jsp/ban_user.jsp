@@ -28,7 +28,7 @@
     Input login of user who you want ban!
     <input type="text" name="login">
     <br>
-    <input type="submit">
+    <button type="submit">Ban this user</button>
 </form>
 </body>
 </html>

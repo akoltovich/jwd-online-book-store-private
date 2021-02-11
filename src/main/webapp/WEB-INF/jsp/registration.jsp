@@ -24,24 +24,6 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<%--<form method="post">--%>
-<%--    Email:--%>
-<%--    <input type="email" name="login">--%>
-<%--    <br>--%>
-<%--    Password:--%>
-<%--    <input type="password" name="password">--%>
-<%--    <br>--%>
-<%--    First name:--%>
-<%--    <input type="text" name="first_name">--%>
-<%--    <br>--%>
-<%--    Last name:--%>
-<%--    <input type="text" name="last_name">--%>
-<%--    <br>--%>
-<%--    Role:--%>
-<%--    <input type="radio" name="role_id" value="1" checked> Admin--%>
-<%--    <input type="radio" name="role_id" value="2"> User--%>
-<%--    <br>--%>
-<%--    <input type="submit">--%>
 <form method="post">
     <div class="form-group row">
         <label for="Email" class="col-sm-2 col-form-label">Email address</label>
@@ -96,10 +78,6 @@
             <button type="submit" class="btn btn-primary">Sign up</button>
         </div>
     </div>
-    <%--    </div>--%>
 </form>
-<%--        <button type="submit" class="btn btn-primary">Sign up!</button>--%>
-<%--</form>--%>
-<%--</form>--%>
 </body>
 </html>

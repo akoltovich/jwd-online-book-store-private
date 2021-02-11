@@ -25,28 +25,6 @@
 </head>
 <body>
 <form method="post">
-    <%--    Book name:--%>
-    <%--    <input type="text" name="name">--%>
-    <%--    <br>--%>
-    <%--    Author:--%>
-    <%--    <input type="trxt" name="author">--%>
-    <%--    <br>--%>
-    <%--    Date of writing:--%>
-    <%--    <input type="date" name="date_of_writing">--%>
-    <%--    <br>--%>
-    <%--    Price:--%>
-    <%--    <input type="number" name="price">--%>
-    <%--    <br>--%>
-    <%--    Quantity:--%>
-    <%--    <input type="number" name="quantity">--%>
-    <%--    <br>--%>
-    <%--    Preview:--%>
-    <%--    <input type="text" name="preview">--%>
-    <%--    <br>--%>
-    <%--    Genre:--%>
-    <%--    <input type="text" name="genre">--%>
-    <%--    <br>--%>
-    <%--    <input type="submit" name="Add book!">--%>
     <div class="form-group row">
         <label for="Name" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-5">
@@ -85,21 +63,21 @@
         <label for="preview" class="col-sm-2 col-form-label">Preview</label>
         <div class="col-sm-5">
             <textarea type="text" class="form-control" id="preview" name="preview" rows="3" aria-describedby="Last"
-                   placeholder="Enter preview"></textarea>
+                      placeholder="Enter preview"></textarea>
         </div>
     </div>
-        <div class="form-group row">
-            <label for="genre" class="col-sm-2 col-form-label">Genre</label>
-            <div class="col-sm-5">
-                <input type="text" class="form-control" id="genre" name="genre" aria-describedby="Last"
-                       placeholder="Enter genre">
-            </div>
+    <div class="form-group row">
+        <label for="genre" class="col-sm-2 col-form-label">Genre</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="genre" name="genre" aria-describedby="Last"
+                   placeholder="Enter genre">
         </div>
-        <div class="form-group row">
-            <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">Add book</button>
-            </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Add book</button>
         </div>
+    </div>
 </form>
 </body>
 </html>

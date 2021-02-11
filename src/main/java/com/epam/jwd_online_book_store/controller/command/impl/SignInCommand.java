@@ -15,7 +15,6 @@ public class SignInCommand implements Command {
     private static final ResponseContext ERROR_PAGE = new ResponseContextImpl(PathToPages.ERROR500_PAGE, ResponseContext.ResponseType.FORWARD);
     private static final ResponseContext ADMIN_PAGE_REDIRECT = new ResponseContextImpl(PathToPages.ADMIN_PAGE_REDIRECT, ResponseContext.ResponseType.REDIRECT);
     private static final ResponseContext USER_PAGE_REDIRECT = new ResponseContextImpl(PathToPages.USER_PAGE_REDIRECT, ResponseContext.ResponseType.REDIRECT);
-    private static final ResponseContext MAIN_PAGE = new ResponseContextImpl(PathToPages.MAIN_PAGE, ResponseContext.ResponseType.FORWARD);
     private static final ResponseContext SIGN_IN_PAGE = new ResponseContextImpl(PathToPages.SIGN_IN_PAGE, ResponseContext.ResponseType.FORWARD);
 
 
@@ -44,9 +43,6 @@ public class SignInCommand implements Command {
                 return ADMIN_PAGE_REDIRECT;
             }
         }
-//        } else {
-//            return ERROR_PAGE;
-//        }
         return SIGN_IN_PAGE;
     }
 }

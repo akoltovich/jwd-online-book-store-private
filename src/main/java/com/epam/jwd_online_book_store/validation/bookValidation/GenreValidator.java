@@ -7,9 +7,9 @@ public class GenreValidator {
     private static final String VALID_GENRE = "^[\\p{L} .'-]+$";
 
     public static boolean isValid(String genre) throws BookException {
-        if (genre.matches(VALID_GENRE)) {
+        if (genre != null && genre.matches(VALID_GENRE)){
             return true;
-        } else {
+        } else{
             throw new BookException("This is not valid genre ");
         }
     }

@@ -7,21 +7,19 @@ import com.epam.jwd_online_book_store.dao.impl.BookDAOImpl;
 import com.epam.jwd_online_book_store.dao.impl.BookOrderDAOImpl;
 import com.epam.jwd_online_book_store.dao.impl.UserDAOImpl;
 import com.epam.jwd_online_book_store.domain.*;
-import com.epam.jwd_online_book_store.dto.BookDTO;
 import com.epam.jwd_online_book_store.dto.UserDTO;
 import com.epam.jwd_online_book_store.exception.BookException;
 import com.epam.jwd_online_book_store.exception.BookOrderException;
 import com.epam.jwd_online_book_store.exception.UserException;
-import com.epam.jwd_online_book_store.util.BookConverter;
 import com.epam.jwd_online_book_store.util.UserConverter;
 import com.epam.jwd_online_book_store.validation.bookValidation.BookValidator;
-import com.epam.jwd_online_book_store.validation.userValidation.EmailValidator;
-import com.epam.jwd_online_book_store.validation.userValidation.FirstLastNameValidator;
-import com.epam.jwd_online_book_store.validation.userValidation.UserValidator;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class AdminService {
     private static AdminService instance;
@@ -46,17 +44,10 @@ public class AdminService {
             }
         }
         return UserConverter.listOfUserToListOfUserDTO(onlyUsers);
-//        if (!userDTOS.isEmpty()) {
-//            return userDTOS;
-//        } else {
-//            throw new UserException("We dont have users:(");
-//        }
-
     }
 
     public List<UserDTO> getUsersByFirstName(String firstName) {
         List<User> users = new ArrayList<>();
-//        if (FirstLastNameValidator.isValid(firstName)) {
         users.addAll(userDAO.findByFirstName(firstName));
         List<User> onlyUsers = new ArrayList<>();
         for (User user : users) {
@@ -64,13 +55,11 @@ public class AdminService {
                 onlyUsers.add(user);
             }
         }
-//        }
         return UserConverter.listOfUserToListOfUserDTO(onlyUsers);
     }
 
     public List<UserDTO> getUsersByLastName(String lastName) {
         List<User> users = new ArrayList<>();
-//        if (FirstLastNameValidator.isValid(lastName)) {
         users.addAll(userDAO.findByLastName(lastName));
         List<User> onlyUsers = new ArrayList<>();
         for (User user : users) {
@@ -78,16 +67,16 @@ public class AdminService {
                 onlyUsers.add(user);
             }
         }
-//        }
         return UserConverter.listOfUserToListOfUserDTO(onlyUsers);
     }
 
 
     public UserDTO getUserByLogin(String login) {
-//        if (EmailValidator.isValid(login)) {
         User user = userDAO.findByLogin(login);
-//        }
-        return UserConverter.userToUserDTO(user);
+        if (user != null) {
+            return UserConverter.userToUserDTO(user);
+        }
+        return null;
     }
 
     public List<UserDTO> getBannedUsers() {
@@ -109,7 +98,13 @@ public class AdminService {
 
     public void updateBook(int id, String newName, String newAuthor, Date newDateOfWriting, double newPrice,
                            int newQuantity, String newPreview, String newGenre) throws BookException {
+        if (id == 0) {
+            throw new BookException("Please,input id of updated book");
+        }
         Book updatedBook = bookDAO.findById(id);
+        if (updatedBook == null) {
+            throw new BookException("We don't have book with this id");
+        }
         if (newName.equals("")) {
             newName = updatedBook.getName();
         }
@@ -132,21 +127,19 @@ public class AdminService {
             newGenre = updatedBook.getGenre();
         }
         Book newBook = new Book(newName, newAuthor, newDateOfWriting, newPrice, newQuantity, newPreview, newGenre);
-//        try {
         if (BookValidator.isValid(newBook)) {
             bookDAO.update(updatedBook.getId(), newBook);
         }
-//        } catch (BookException e) {
-//            e.printStackTrace();
-//        }
     }
 
     public void banUser(String login) throws UserException {
         User user = userDAO.findByLogin(login);
+        if (user == null) {
+            throw new UserException("Invalid input");
+        }
         if (user.getRoleId() == 2 && !user.isBanned()) {
             user.setBanned(true);
             userDAO.update(user.getId(), user);
-//        }
         } else if (user.getRoleId() != 2) {
             throw new UserException("You can ban only users!");
         } else if (user.isBanned()) {
@@ -156,6 +149,9 @@ public class AdminService {
 
     public void unbanUser(String login) throws UserException {
         User user = userDAO.findByLogin(login);
+        if (user == null) {
+            throw new UserException("Invalid input");
+        }
         if (user.getRoleId() == 2 && user.isBanned()) {
             user.setBanned(false);
             userDAO.update(user.getId(), user);
@@ -167,17 +163,6 @@ public class AdminService {
         }
     }
 
-    //    public List<BookOrder> findOrderByStatus(String status) {
-//        List<BookOrder> orders = new ArrayList<>();
-//        if (status.equals(BookOrderStatus.AWAITING_CONFIRMATION.getStatus())) {
-//            orders = bookOrderDAO.findByOrderStatus(BookOrderStatus.AWAITING_CONFIRMATION.getStatus());
-//        } else if (status.equals(BookOrderStatus.IN_PROGRESS.getStatus())) {
-//            orders = bookOrderDAO.findByOrderStatus(BookOrderStatus.IN_PROGRESS.getStatus());
-//        } else if (status.equals(BookOrderStatus.COMPLETED.getStatus())) {
-//            orders = bookOrderDAO.findByOrderStatus(BookOrderStatus.COMPLETED.getStatus());
-//        }
-//        return orders;
-//    }
     public List<BookOrder> findOrderByStatus(String status, String login) {
         User user = userDAO.findByLogin(login);
         List<BookOrder> orders = new ArrayList<>();

@@ -4,8 +4,7 @@ import java.sql.Connection;
 
 public class DataSource {
 
-        private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
-//    private static final ConnectionPool connectionPool = new ConnectionPool();
+    private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     public static Connection getConnection() {
         return connectionPool.getConnectionFromPool();

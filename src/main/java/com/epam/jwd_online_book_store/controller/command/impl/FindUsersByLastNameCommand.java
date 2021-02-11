@@ -5,14 +5,12 @@ import com.epam.jwd_online_book_store.controller.command.Command;
 import com.epam.jwd_online_book_store.controller.command.RequestContext;
 import com.epam.jwd_online_book_store.controller.command.ResponseContext;
 import com.epam.jwd_online_book_store.dto.UserDTO;
-import com.epam.jwd_online_book_store.exception.UserException;
 import com.epam.jwd_online_book_store.service.AdminService;
 
 import java.util.List;
 
 public class FindUsersByLastNameCommand implements Command {
     private static final ResponseContext USERS_BY_LAST_NAME = new ResponseContextImpl(PathToPages.USERS_BY_LAST_NAME, ResponseContext.ResponseType.FORWARD);
-    private static final ResponseContext USERS_BY_LAST_NAME_REDIRECT = new ResponseContextImpl(PathToPages.USERS_BY_LAST_NAME_REDIRECT, ResponseContext.ResponseType.REDIRECT);
 
     @Override
     public ResponseContext execute(RequestContext requestContext) {
@@ -21,7 +19,6 @@ public class FindUsersByLastNameCommand implements Command {
         }
         AdminService service = AdminService.getInstance();
         String lastName = requestContext.getParameter("last_name");
-//        try {
         List<UserDTO> users = service.getUsersByLastName(lastName);
         if (!users.isEmpty()) {
             requestContext.setAttribute("users", users);
@@ -29,9 +26,6 @@ public class FindUsersByLastNameCommand implements Command {
             String empty = "We dont have users with this last name";
             requestContext.setAttribute("empt", empty);
         }
-//        } catch (UserException e) {
-//            e.printStackTrace();
-//        }
         return USERS_BY_LAST_NAME;
     }
 }

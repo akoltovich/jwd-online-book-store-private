@@ -25,57 +25,7 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-
-<!-- Кнопка, открывающее модальное окно -->
-<%--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#SignUp">--%>
-<%--    Sign up!--%>
-<%--</button>--%>
-<!-- Модальное окно -->
-<%--<div class="modal fade" id="SignUp" tabindex="-1" role="dialog" aria-labelledby="SignUp" aria-hidden="true">--%>
-<%--    <div class="modal-dialog" role="document">--%>
-<%--        <div class="modal-content">--%>
-<%--            <div class="modal-header">--%>
-<%--                <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">--%>
-<%--                    <span aria-hidden="true">×</span>--%>
-<%--                </button>--%>
-<%--                <h4 class="modal-title" id="myModalLabel">Registration</h4>--%>
-<%--            </div>--%>
-<%--            <div class="modal-body">--%>
-<%--                <form method="post">--%>
-<%--                    <c:import url="registration.jsp"/>--%>
-<%--                    <input type="hidden" name="command" value="registration">--%>
-<%--                    Login:--%>
-<%--                    <input type="email" name="login">--%>
-<%--                    <br>--%>
-<%--                    Password:--%>
-<%--                    <input type="password" name="password">--%>
-<%--                    <br>--%>
-<%--                    First name:--%>
-<%--                    <input type="text" name="first_name">--%>
-<%--                    <br>--%>
-<%--                    Last name:--%>
-<%--                    <input type="text" name="last_name">--%>
-<%--                    <br>--%>
-<%--                                        <a href="home?command=user_page">--%>
-<%--                                            <input type="submit">--%>
-<%--                                        </a>--%>
-<%--                </form>--%>
-<%--            </div>--%>
-<%--            <div class="modal-footer">--%>
-<%--                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
-<%--                <a href="home?command=user_page">--%>
-<%--                    <button type="submit" class="btn btn-primary">Submit</button>--%>
-<%--                </a>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</div>--%>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-<%--    <a class="navbar-brand" href="home?command=main_page">Main page</a>--%>
-<%--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"--%>
-<%--            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">--%>
-<%--        <span class="navbar-toggler-icon"></span>--%>
-<%--    </button>--%>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item active">
@@ -84,9 +34,6 @@
             <li class="nav-item active">
                 <a class="nav-link" href="home?command=sign_in">Sign in</a>
             </li>
-<%--            <li class="nav-item active">--%>
-<%--                <a class="nav-link" href="home?command=error">Error</a>--%>
-<%--            </li>--%>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -103,15 +50,5 @@
         </ul>
     </div>
 </nav>
-<%--<a href="home?command=registration">--%>
-<%--    <button>Sign Up</button>--%>
-<%--</a>--%>
-<%--<a href="home?command=sign_in">--%>
-<%--    <button>Sign In</button>--%>
-<%--</a>--%>
-<%--<a href="home?command=error">--%>
-<%--    <button>Error page</button>--%>
-<%--</a>--%>
-
 </body>
 </html>

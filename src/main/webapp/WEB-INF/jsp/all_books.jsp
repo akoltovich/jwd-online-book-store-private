@@ -27,9 +27,6 @@
 </head>
 <body>
 <c:if test="${books != null}">
-<%--    <sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"--%>
-<%--                       url="jdbc:mysql://localhost:3306/library?serverTimezone=UTC"--%>
-<%--                       user="root" password="postgres"/>--%>
     <table class="table" id="table">
         <thead class="thead-dark">
         <tr>
@@ -45,10 +42,6 @@
         </tr>
         </thead>
         <c:forEach var="book" items="${books}">
-<%--            <sql:query dataSource="${dataSource}" var="preview">--%>
-<%--                SELECT preview from BOOK where id=${book.id}--%>
-<%--            </sql:query>--%>
-
             <tbody>
             <tr>
                 <td><c:out value="${book.id}"/></td>
@@ -58,97 +51,69 @@
                 <td><c:out value="${book.price}"/></td>
                 <td><c:out value="${book.pricePerDay}"/></td>
                 <td><c:out value="${book.quantity}"/></td>
-<%--                <c:set var="modal" scope="application" value="modal"/>--%>
-                <td>
-                    <div id="accordion">
-                        <div class="card">
-                            <div class="card-header" id="headingOne">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Разворачиваемая панель #1
-                                    </button>
-                                </h5>
-                            </div>
-
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                                <div class="card-body">
-                                    <c:out value="${book.preview}"/>
-                                </div>
-                            </div>
+                <td width="700">
+                    <p>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                data-target="#collapseE" aria-expanded="false" aria-controls="collapseE">
+                            Show preview
+                        </button>
+                    </p>
+                    <div class="collapse" id="collapseE">
+                        <div class="card card-body">
+                            <c:out value=" ${book.preview}"/>
                         </div>
                     </div>
-<%--                    <button type="button" id="modal" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">--%>
-<%--                        Show preview--%>
-<%--                    </button>--%>
-<%--                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"--%>
-<%--                         aria-labelledby="exampleModalLongTitle" aria-hidden="true">--%>
-<%--                        <div class="modal-dialog" role="document">--%>
-<%--                            <div class="modal-content">--%>
-<%--                                <div class="modal-header">--%>
-<%--                                        &lt;%&ndash;                                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>&ndash;%&gt;--%>
-<%--                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--%>
-<%--                                        <span aria-hidden="true">&times;</span>--%>
-<%--                                    </button>--%>
-<%--                                </div>--%>
-<%--                                <div class="modal-body">--%>
-<%--                                        &lt;%&ndash;                                    <c:forEach var="book" items="${books}">&ndash;%&gt;--%>
-<%--                                    <c:out value="${book.preview}"/>--%>
-<%--                                        &lt;%&ndash;                                    </c:forEach>&ndash;%&gt;--%>
-<%--                                </div>--%>
-<%--                                <div class="modal-footer">--%>
-<%--                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--%>
-<%--                                        &lt;%&ndash;                                <button type="button" class="btn btn-primary">Save changes</button>&ndash;%&gt;--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
                 </td>
-                    <%--                <td><c:out value="${book.preview}"/></td>--%>
                 <td><c:out value="${book.genre}"/></td>
             </tr>
-                <%--            <br>--%>
             </tbody>
         </c:forEach>
     </table>
+    <c:if test="${sessionScope.user.roleId == 1}">
+        <a href="home?command=delete_book">
+            <button>Delete book!</button>
+        </a>
+        <a href="home?command=add_book">
+            <button>Add new book in the store!</button>
+        </a>
+        <a href="home?command=update_book">
+            <button>Update book!</button>
+        </a>
+        <a href="home?command=admin_page">
+            <button>To main page</button>
+        </a>
+    </c:if>
+    <c:if test="${sessionScope.user.roleId == 2}">
+        <a href="home?command=order_book">
+            <button>Order book!</button>
+        </a>
+        <a href="home?command=user_page">
+            <button>To main page</button>
+        </a>
+    </c:if>
+    <c:if test="${sessionScope.user == null}">
+        <a href="home?command=main_page">
+            <button>To main page</button>
+        </a>
+    </c:if>
 </c:if>
 <c:if test="${empt != null}">
     <c:out value="${empt}"/>
+    <c:if test="${sessionScope.user.roleId == 1}">
+        <a href="home?command=admin_page">
+            <button>To main page</button>
+        </a>
+    </c:if>
+    <c:if test="${sessionScope.user.roleId == 2}">
+        <a href="home?command=user_page">
+            <button>To main page</button>
+        </a>
+    </c:if>
+    <c:if test="${sessionScope.user == null}">
+        <a href="home?command=main_page">
+            <button>To main page</button>
+        </a>
+    </c:if>
 </c:if>
-<c:if test="${sessionScope.user.roleId == 1}">
-    <a href="home?command=admin_page">
-        <button>To admin page</button>
-    </a>
-    <br>
-    <a href="home?command=delete_book">
-        <button>Delete book!</button>
-    </a>
-    <a href="home?command=add_book">
-        <button>Add new book in the store!</button>
-    </a>
-    <a href="home?command=update_book">
-        <button>Update book!</button>
-    </a>
-</c:if>
-<c:if test="${sessionScope.user.roleId == 2}">
-    <a href="home?command=user_page">
-        <button>To user page</button>
-    </a>
-    <br>
-    <a href="home?command=order_book">
-        <button>Order book!</button>
-    </a>
-</c:if>
-<c:if test="${sessionScope.user == null}">
-    <a href="home?command=main_page">
-        <button>To main page</button>
-    </a>
-</c:if>
-<%--<script> $('table').on('click', 'tr', function(){--%>
-<%--var idx = $(this).index() + 1;--%>
-<%--$('.modal').hide();--%>
-<%--$('#myModal' + idx).show();--%>
-<%--});--%>
-<%--</script>--%>
 </body>
-
 </html>

@@ -16,7 +16,10 @@ import com.epam.jwd_online_book_store.validation.userValidation.*;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class UserService {
 
@@ -33,13 +36,13 @@ public class UserService {
     BookDAO bookDAO = BookDAOImpl.getInstance();
     BookOrderDAO bookOrderDAO = BookOrderDAOImpl.getInstance();
 
-    public User registration(UserDTO userDTO) throws UserException {
+    public User registration(UserDTO userDTO, String password) throws UserException {
         User user = UserConverter.userDTOToUser(userDTO);
+        user.setPassword(password);
         if (UserValidator.isValid(user)) {
             userDAO.create(user);
         }
         return user;
-//        return null;
     }
 
     public UserDTO signIn(String login, String password) throws UserException {
@@ -49,58 +52,26 @@ public class UserService {
             userDTO = UserConverter.userToUserDTO(user);
         }
         return userDTO;
-//        try {
-//            if (user == null || !user.getPassword().equals(password)) {
-//                throw new UserException("incorrect email or password");
-//
-//            }
-//            if (user.isBanned()) {
-//                throw new UserException("You are in ban");
-//            }
-//        } catch (UserException e) {
-//            e.printStackTrace();
-//        }
-//        return UserConverter.userToUserDTO(user);
     }
 
     public List<Book> findBooksByName(String name) {
         return bookDAO.findByName(name);
-//        if (!books.isEmpty()) {
-//            return books;
-//        }
-//        throw new BookException("We dont have this books!");
     }
 
     public List<Book> findBooksByAuthor(String author) {
         return bookDAO.findByAuthor(author);
-//        if (!books.isEmpty()) {
-//            return books;
-//        }
-//        throw new BookException("We dont have his books!");
     }
 
     public List<Book> findBooksByGenre(String genre) {
         return bookDAO.findByGenre(genre);
-//        if (!books.isEmpty()) {
-//            return books;
-//        }
-//        throw new BookException("We dont have books of genre" + genre);
     }
 
     public List<Book> findBooksByPrice(double from, double to) {
         return bookDAO.findByPrice(from, to);
-//        if (!books.isEmpty()) {
-//            return books;
-//        }
-//        throw new BookException("We dont have books with this price");
     }
 
     public List<Book> findAllBooks() {
         return bookDAO.findAll();
-//        if (!books.isEmpty()) {
-//            return books;
-//        }
-//        throw new BookException("Sorry, we dont have books:(");
     }
 
     public void selfDelete(UserDTO userDTO) {
@@ -146,7 +117,7 @@ public class UserService {
         Book book = bookDAO.findById(bookId);
         if (book == null) {
             throw new BookException("Incorrect id");
-        }else if (book.getQuantity() > 0) {
+        } else if (book.getQuantity() > 0) {
             User user = userDAO.findByLogin(login);
             createOrder(user.getId());
             List<BookOrder> orders = bookOrderDAO.findAll();
@@ -187,7 +158,7 @@ public class UserService {
         BookOrder order = bookOrderDAO.findById(id);
         if (order == null) {
             throw new BookOrderException("Order with this id does not exists");
-        }else if (user.getId() == order.getOrderedBy()) {
+        } else if (user.getId() == order.getOrderedBy()) {
             bookOrderDAO.delete(id);
         } else {
             throw new BookOrderException("You can delete only yours orders");

@@ -27,15 +27,13 @@ public class UserDAOImpl implements UserDAO {
     private static final String SQL_FIND_USER_BY_ID = "select * from app_user where id=?";
     private static final String SQL_FIND_ALL_USERS = "select * from app_user";
     private static final String SQL_CREATE_USER = "insert into app_user (id,login,password,first_name,last_name,role_id,is_banned) values (?,?,?,?,?,?,?)";
-        private static final String SQL_DELETE_USER = "delete from app_user where id=?";
-//    private static final String SQL_DELETE_USER = "delete from app_user where login=?";
+    private static final String SQL_DELETE_USER = "delete from app_user where id=?";
     private static final String SQL_UPDATE_USER = "update app_user set login=?,password=?,first_name=?,last_name=?,role_id=?,is_banned=? where id=?";
     private static final String SQL_FIND_BY_LOGIN = "select * from app_user where login=?";
     private static final String SQL_FIND_BY_FIRST_NAME = "select * from app_user where first_name=?";
     private static final String SQL_FIND_BY_LAST_NAME = "select * from app_user where last_name=?";
     private static final String SQL_FIND_BY_ROLE = "select * from app_user where role_id=?";
     private static final String SQL_FIND_BANNED_USERS = "select * from app_user where is_banned=?";
-//    private static final String SQL_
 
 
     @Override
@@ -211,7 +209,7 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
-        @Override
+    @Override
     public void delete(int id) {
         Connection connection = DataSource.getConnection();
         try {
@@ -223,18 +221,6 @@ public class UserDAOImpl implements UserDAO {
             e.printStackTrace();
         }
     }
-//    @Override
-//    public void delete(String name) {
-//        Connection connection = DataSource.getConnection();
-//        try {
-//            PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_USER);
-//            preparedStatement.setString(1, name);
-//            preparedStatement.executeUpdate();
-//            CloseUtil.customClose(connection, preparedStatement);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     private User getUserFromResultSet(ResultSet resultSet) {
         User user = new User();
@@ -251,6 +237,4 @@ public class UserDAOImpl implements UserDAO {
         }
         return user;
     }
-
-
 }

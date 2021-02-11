@@ -20,12 +20,12 @@ public class ShowAllUserOrdersCommand implements Command {
         UserService service = UserService.getInstance();
         UserDTO userDTO = (UserDTO) requestContext.getSession().getAttribute("user");
         Map<BookOrder, Book> orders = service.getAllUserOrders(userDTO.getLogin());
-            if (!orders.isEmpty()) {
-                requestContext.setAttribute("orders", orders);
-            } else {
-                String empty = "Sorry, you don't have orders";
-                requestContext.setAttribute("empt", empty);
-            }
+        if (!orders.isEmpty()) {
+            requestContext.setAttribute("orders", orders);
+        } else {
+            String empty = "Sorry, you don't have orders";
+            requestContext.setAttribute("empt", empty);
+        }
         return SHOW_ALL_USER_ORDERS;
     }
 }

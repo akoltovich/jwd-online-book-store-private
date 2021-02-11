@@ -38,18 +38,5 @@
     <input type="hidden" name="status" value="Completed">
     <button type="submit">Completed</button>
 </form>
-<%--<a href="home?command=show_orders_by_status">--%>
-<%--    <input type="hidden" name="status" value="Awaiting confirmation">--%>
-<%--    <button type="submit">Awaiting confirmation</button>--%>
-<%--</a>--%>
-<%--<a href="home?command=show_orders_by_status">--%>
-<%--    <input type="hidden" name="status" value="In progress">&ndash;%&gt;--%>
-<%--    <button type="submit">In progress</button>--%>
-<%--</a>--%>
-<%--<a href="home?command=show_orders_by_status">--%>
-<%--    <input type="hidden" name="status" value="Completed">--%>
-<%--    <button type="submit">Completed</button>--%>
-<%--</a>--%>
-
 </body>
 </html>
