@@ -13,6 +13,8 @@ import com.epam.jwd_online_book_store.exception.BookOrderException;
 import com.epam.jwd_online_book_store.exception.UserException;
 import com.epam.jwd_online_book_store.util.UserConverter;
 import com.epam.jwd_online_book_store.validation.userValidation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -22,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 public class UserService {
-
+    private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
     private static UserService instance;
 
     public static UserService getInstance() {
@@ -41,6 +43,7 @@ public class UserService {
         user.setPassword(password);
         if (UserValidator.isValid(user)) {
             userDAO.create(user);
+            LOG.info("User successfully created");
         }
         return user;
     }
@@ -50,6 +53,7 @@ public class UserService {
         UserDTO userDTO = null;
         if (SignInValidator.isValid(user, password)) {
             userDTO = UserConverter.userToUserDTO(user);
+            LOG.info("User successfully passed validation");
         }
         return userDTO;
     }
@@ -77,12 +81,14 @@ public class UserService {
     public void selfDelete(UserDTO userDTO) {
         User userByLogin = userDAO.findByLogin(userDTO.getLogin());
         userDAO.delete(userByLogin.getId());
+        LOG.info("User successfully deleted");
     }
 
     public void updateLogin(UserDTO userDTO, String newLogin) throws UserException {
         User user = userDAO.findByLogin(userDTO.getLogin());
         if (EmailValidator.isValid(newLogin)) {
             userDAO.update(user.getId(), new User(newLogin, user.getPassword(), user.getFirstName(), user.getLastName(), user.getRoleId()));
+            LOG.info("User login successfully updated");
         }
     }
 
@@ -90,6 +96,7 @@ public class UserService {
         User user = userDAO.findByLogin(login);
         if (PasswordValidator.isValid(newPassword)) {
             userDAO.update(user.getId(), new User(user.getLogin(), newPassword, user.getFirstName(), user.getLastName(), user.getRoleId()));
+            LOG.info("User password successfully updated");
         }
     }
 
@@ -97,6 +104,7 @@ public class UserService {
         User user = userDAO.findByLogin(userDTO.getLogin());
         if (FirstLastNameValidator.isValid(newFirstName)) {
             userDAO.update(user.getId(), new User(user.getLogin(), user.getPassword(), newFirstName, user.getLastName(), user.getRoleId()));
+            LOG.info("User first name successfully updated");
         }
     }
 
@@ -104,12 +112,14 @@ public class UserService {
         User user = userDAO.findByLogin(userDTO.getLogin());
         if (FirstLastNameValidator.isValid(newLastName)) {
             userDAO.update(user.getId(), new User(user.getLogin(), user.getPassword(), user.getFirstName(), newLastName, user.getRoleId()));
+            LOG.info("User last name successfully updated");
         }
     }
 
     private BookOrder createOrder(int orderedBy) {
         BookOrder bookOrder = new BookOrder(Date.valueOf(LocalDate.now()), orderedBy, BookOrderStatus.AWAITING_CONFIRMATION.getStatus());
         bookOrderDAO.create(bookOrder);
+        LOG.info("Order successfully created");
         return bookOrder;
     }
 
@@ -124,6 +134,7 @@ public class UserService {
             int orderId = orders.get(orders.size() - 1).getId();
             BookOrderBook orderBook = new BookOrderBook(bookId, orderId);
             bookOrderDAO.createBookOrderBook(orderBook);
+            LOG.info("Book order successfully created");
         } else {
             throw new BookException("We don't have this book in storage");
         }
@@ -160,6 +171,7 @@ public class UserService {
             throw new BookOrderException("Order with this id does not exists");
         } else if (user.getId() == order.getOrderedBy()) {
             bookOrderDAO.delete(id);
+            LOG.info("Book order successfully deleted");
         } else {
             throw new BookOrderException("You can delete only yours orders");
         }

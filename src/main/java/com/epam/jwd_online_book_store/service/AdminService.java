@@ -13,6 +13,8 @@ import com.epam.jwd_online_book_store.exception.BookOrderException;
 import com.epam.jwd_online_book_store.exception.UserException;
 import com.epam.jwd_online_book_store.util.UserConverter;
 import com.epam.jwd_online_book_store.validation.bookValidation.BookValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -22,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 public class AdminService {
+    private static final Logger LOG = LoggerFactory.getLogger(AdminService.class);
     private static AdminService instance;
 
     public static AdminService getInstance() {
@@ -87,6 +90,7 @@ public class AdminService {
     public Book addBook(Book book) throws BookException {
         if (BookValidator.isValid(book)) {
             bookDAO.create(book);
+            LOG.info("Book successfully created");
         }
         return book;
     }
@@ -94,6 +98,7 @@ public class AdminService {
     public void deleteBook(int id) {
         Book book = bookDAO.findById(id);
         bookDAO.delete(book.getId());
+        LOG.info("Book successfully deleted");
     }
 
     public void updateBook(int id, String newName, String newAuthor, Date newDateOfWriting, double newPrice,
@@ -129,6 +134,7 @@ public class AdminService {
         Book newBook = new Book(newName, newAuthor, newDateOfWriting, newPrice, newQuantity, newPreview, newGenre);
         if (BookValidator.isValid(newBook)) {
             bookDAO.update(updatedBook.getId(), newBook);
+            LOG.info("Book successfully updated");
         }
     }
 
@@ -140,6 +146,7 @@ public class AdminService {
         if (user.getRoleId() == 2 && !user.isBanned()) {
             user.setBanned(true);
             userDAO.update(user.getId(), user);
+            LOG.info("User successfully banned");
         } else if (user.getRoleId() != 2) {
             throw new UserException("You can ban only users!");
         } else if (user.isBanned()) {
@@ -155,7 +162,7 @@ public class AdminService {
         if (user.getRoleId() == 2 && user.isBanned()) {
             user.setBanned(false);
             userDAO.update(user.getId(), user);
-//        }
+            LOG.info("User successfully unbanned");
         } else if (user.getRoleId() != 2) {
             throw new UserException("You can unban only users!");
         } else if (!user.isBanned()) {
@@ -187,18 +194,23 @@ public class AdminService {
         BookOrder order = bookOrderDAO.findById(id);
         if (order.getBookOrderStatus().equals(BookOrderStatus.AWAITING_CONFIRMATION.getStatus())) {
             bookOrderDAO.update(id, new BookOrder(order.getDateOfCreation(), order.getOrderedBy(), user.getId(), order.getOrderCompleteDate(), BookOrderStatus.IN_PROGRESS.getStatus()));
+            LOG.info("Order successfully taken");
         } else
             throw new BookOrderException("You can take only awaiting orders");
     }
 
     public void completeOrder(int id) throws BookOrderException {
         BookOrder order = bookOrderDAO.findById(id);
+        if(order == null) {
+            throw new BookOrderException("Incorrect order id");
+        }
         BookOrderBook bookOrderBook = bookOrderDAO.findOrderByOrderId(order.getId());
         Book book = bookDAO.findById(bookOrderBook.getBookId());
         if (order.getBookOrderStatus().equals(BookOrderStatus.IN_PROGRESS.getStatus())) {
             bookOrderDAO.update(id, new BookOrder(order.getDateOfCreation(), order.getOrderedBy(), order.getVerifiedBy(), Date.valueOf(LocalDate.now()), BookOrderStatus.COMPLETED.getStatus()));
             book.setQuantity(book.getQuantity() - 1);
             bookDAO.update(book.getId(), book);
+            LOG.info("Order successfully completed");
         } else
             throw new BookOrderException("You can complete only in progress orders");
     }
