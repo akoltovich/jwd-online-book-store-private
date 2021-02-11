@@ -37,6 +37,7 @@ public enum CommandType {
     TAKE_ORDER("take_order"),
     COMPLETE_ORDER("complete_order"),
     SHOW_ORDERS_BY_STATUS("show_orders_by_status"),
+    ACCESS_DENIED("access_denied"),
     ERROR("error");
 
     private String value;

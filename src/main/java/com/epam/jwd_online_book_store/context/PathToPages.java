@@ -43,7 +43,7 @@ public class PathToPages {
     public static final String USER_CHANGE_PASSWORD = "WEB-INF/jsp/user_change_password.jsp";
     public static final String ALL_BOOKS = "WEB-INF/jsp/all_books.jsp";
     public static final String ERROR500_PAGE = "/error500.jsp";
-
+    public static final String ACCESS_DENIED = "WEB-INF/jsp/access_is_denied.jsp";
     public static final String REGISTER_PAGE = "WEB-INF/jsp/registration.jsp";
     public static final String MAIN_PAGE = "WEB-INF/jsp/main_page.jsp";
     public static final String SIGN_IN_PAGE = "WEB-INF/jsp/sign_in.jsp";
@@ -51,6 +51,8 @@ public class PathToPages {
     /**
      * Redirect commands
      */
+    public static final String ACCESS_DENIED_REDIRECT = "home?command=access_denied";
+    public static final String MAIN_PAGE_REDIRECT = "home?command=main_page";
     public static final String SHOW_ALL_ADMIN_ORDERS_REDIRECT = "home?command=show_all_admin_orders";
     public static final String SHOW_ALL_USER_ORDERS_REDIRECT = "home?command=show_all_user_orders";
     public static final String ALL_BOOKS_REDIRECT = "home?command=all_books";

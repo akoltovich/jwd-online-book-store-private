@@ -28,18 +28,21 @@
 <c:out value="${exception.message}"/>
 <c:if test="${sessionScope.user.roleId == 1}">
     <a href="home?command=admin_page">
-        <button>To admin page</button>
+        <button>To main page</button>
     </a>
+    <button onclick="history.back()">Roll back</button>
 </c:if>
 <c:if test="${sessionScope.user.roleId == 2}">
     <a href="home?command=user_page">
-        <button>To user page</button>
+        <button>To main page</button>
     </a>
+    <button onclick="history.back()">Roll back</button>
 </c:if>
 <c:if test="${sessionScope.user == null}">
     <a href="home?command=main_page">
         <button>To main page</button>
     </a>
+    <button onclick="history.back()">Roll back</button>
 </c:if>
 </body>
 </html>

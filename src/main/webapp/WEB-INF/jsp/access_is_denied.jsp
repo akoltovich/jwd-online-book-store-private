@@ -2,8 +2,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: alexe
-  Date: 2/2/2021
-  Time: 8:10 PM
+  Date: 2/11/2021
+  Time: 4:58 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -25,22 +25,17 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-This page does not exist!
-<c:if test="${sessionScope.user.roleId == 1}">
-    <a href="home?command=admin_page">
-        <button>To admin page</button>
-    </a>
-    <button onclick="history.back()">Roll back</button>
-</c:if>
 <c:if test="${sessionScope.user.roleId == 2}">
+    <c:out value="Access denied for user"/>
     <a href="home?command=user_page">
-        <button>To user page</button>
+        <button>To main menu</button>
     </a>
     <button onclick="history.back()">Roll back</button>
 </c:if>
-<c:if test="${sessionScope.user == null}">
-    <a href="home?command=main_page">
-        <button>To main page</button>
+<c:if test="${sessionScope.user.roleId == 1}">
+    <c:out value="Acces denied for admin"/>
+    <a href="home?command=admin_page">
+        <button>To main menu</button>
     </a>
     <button onclick="history.back()">Roll back</button>
 </c:if>

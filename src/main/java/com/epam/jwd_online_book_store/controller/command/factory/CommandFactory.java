@@ -81,6 +81,8 @@ public class CommandFactory {
                 return new CompleteOrderCommand();
             case SHOW_ORDERS_BY_STATUS:
                 return new ShowAllOrdersByStatusCommand();
+            case ACCESS_DENIED:
+                return new AccessDeniedPageCommand();
             default:
                 return new ErrorPageCommand();
         }
