@@ -22,8 +22,14 @@ public class TakeOrderCommand implements Command {
         AdminService service = AdminService.getInstance();
         String id = requestContext.getParameter("order_id");
         UserDTO userDTO = (UserDTO) requestContext.getSession().getAttribute("user");
+        int parseId;
         try {
-            service.takeOrder(Integer.parseInt(id), userDTO.getLogin());
+            parseId = Integer.parseInt(id);
+        } catch (NumberFormatException e) {
+            parseId = 0;
+        }
+        try {
+            service.takeOrder(parseId, userDTO.getLogin());
         } catch (BookOrderException e) {
             e.printStackTrace();
             requestContext.setAttribute("exception", e);

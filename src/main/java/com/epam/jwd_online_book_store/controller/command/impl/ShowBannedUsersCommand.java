@@ -17,7 +17,12 @@ public class ShowBannedUsersCommand implements Command {
     public ResponseContext execute(RequestContext requestContext) {
         AdminService service = AdminService.getInstance();
         List<UserDTO> users = service.getBannedUsers();
-        requestContext.setAttribute("users", users);
+        if (!users.isEmpty()) {
+            requestContext.setAttribute("users", users);
+        } else {
+            String empty = "We don't have banned users";
+            requestContext.setAttribute("empt", empty);
+        }
         return BANNED_USERS;
     }
 }

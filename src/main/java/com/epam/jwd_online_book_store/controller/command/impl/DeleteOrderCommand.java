@@ -22,8 +22,14 @@ public class DeleteOrderCommand implements Command {
         UserService service = UserService.getInstance();
         String id = requestContext.getParameter("order_id");
         UserDTO userDTO = (UserDTO) requestContext.getSession().getAttribute("user");
+        int parsedId;
         try {
-            service.deleteOrder(Integer.parseInt(id), userDTO.getLogin());
+            parsedId = Integer.parseInt(id);
+        } catch (NumberFormatException e) {
+            parsedId = 0;
+        }
+        try {
+            service.deleteOrder(parsedId, userDTO.getLogin());
         } catch (BookOrderException e) {
             e.printStackTrace();
             requestContext.setAttribute("exception", e);

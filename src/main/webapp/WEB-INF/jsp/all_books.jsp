@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: alexe
@@ -47,7 +48,8 @@
                 <td><c:out value="${book.id}"/></td>
                 <td><c:out value="${book.name}"/></td>
                 <td><c:out value="${book.author}"/></td>
-                <td><c:out value="${book.dateOfWriting}"/></td>
+<%--                <td><c:out value="${book.dateOfWriting}"/></td>--%>
+                <td><fmt:formatDate value="${book.dateOfWriting}" pattern="dd.MM.yyyy"/></td>
                 <td><c:out value="${book.price}"/></td>
                 <td><c:out value="${book.pricePerDay}"/></td>
                 <td><c:out value="${book.quantity}"/></td>

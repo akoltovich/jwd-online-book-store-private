@@ -20,8 +20,14 @@ public class CompleteOrderCommand implements Command {
         }
         AdminService service = AdminService.getInstance();
         String id = requestContext.getParameter("order_id");
+        int parseId;
         try {
-            service.completeOrder(Integer.parseInt(id));
+            parseId = Integer.parseInt(id);
+        } catch (NumberFormatException e) {
+            parseId = 0;
+        }
+        try {
+            service.completeOrder(parseId);
         } catch (BookOrderException e) {
             e.printStackTrace();
             requestContext.setAttribute("exception", e);

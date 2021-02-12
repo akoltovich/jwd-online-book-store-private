@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: alexe
@@ -39,8 +40,10 @@
             <tbody>
             <tr>
                 <td><c:out value="${order.id}"/></td>
-                <td><c:out value="${order.dateOfCreation}"/></td>
-                <td><c:out value="${order.orderCompleteDate}"/></td>
+<%--                <td><c:out value="${order.dateOfCreation}"/></td>--%>
+<%--                <td><c:out value="${order.orderCompleteDate}"/></td>--%>
+                <td><fmt:formatDate value="${order.dateOfCreation}" pattern="dd.MM.yyyy HH:mm"/></td>
+                <td><fmt:formatDate value="${order.orderCompleteDate}" pattern="dd.MM.yyyy HH:mm"/></td>
                 <td><c:out value="${order.bookOrderStatus}"/></td>
             </tr>
             </tbody>

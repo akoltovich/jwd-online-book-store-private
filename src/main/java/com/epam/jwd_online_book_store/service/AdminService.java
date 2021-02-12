@@ -17,7 +17,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -192,11 +194,15 @@ public class AdminService {
     public void takeOrder(int id, String login) throws BookOrderException {
         User user = userDAO.findByLogin(login);
         BookOrder order = bookOrderDAO.findById(id);
+        if (order == null) {
+            throw new BookOrderException("Incorrect id");
+        }
         if (order.getBookOrderStatus().equals(BookOrderStatus.AWAITING_CONFIRMATION.getStatus())) {
             bookOrderDAO.update(id, new BookOrder(order.getDateOfCreation(), order.getOrderedBy(), user.getId(), order.getOrderCompleteDate(), BookOrderStatus.IN_PROGRESS.getStatus()));
             LOG.info("Order successfully taken");
-        } else
+        } else if (!order.getBookOrderStatus().equals(BookOrderStatus.AWAITING_CONFIRMATION.getStatus())) {
             throw new BookOrderException("You can take only awaiting orders");
+        }
     }
 
     public void completeOrder(int id) throws BookOrderException {
@@ -207,7 +213,7 @@ public class AdminService {
         BookOrderBook bookOrderBook = bookOrderDAO.findOrderByOrderId(order.getId());
         Book book = bookDAO.findById(bookOrderBook.getBookId());
         if (order.getBookOrderStatus().equals(BookOrderStatus.IN_PROGRESS.getStatus())) {
-            bookOrderDAO.update(id, new BookOrder(order.getDateOfCreation(), order.getOrderedBy(), order.getVerifiedBy(), Date.valueOf(LocalDate.now()), BookOrderStatus.COMPLETED.getStatus()));
+            bookOrderDAO.update(id, new BookOrder(order.getDateOfCreation(), order.getOrderedBy(), order.getVerifiedBy(), Timestamp.valueOf(LocalDateTime.now()), BookOrderStatus.COMPLETED.getStatus()));
             book.setQuantity(book.getQuantity() - 1);
             bookDAO.update(book.getId(), book);
             LOG.info("Order successfully completed");

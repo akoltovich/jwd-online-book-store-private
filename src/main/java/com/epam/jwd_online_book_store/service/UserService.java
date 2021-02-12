@@ -17,7 +17,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -117,7 +119,7 @@ public class UserService {
     }
 
     private BookOrder createOrder(int orderedBy) {
-        BookOrder bookOrder = new BookOrder(Date.valueOf(LocalDate.now()), orderedBy, BookOrderStatus.AWAITING_CONFIRMATION.getStatus());
+        BookOrder bookOrder = new BookOrder(Timestamp.valueOf(LocalDateTime.now()), orderedBy, BookOrderStatus.AWAITING_CONFIRMATION.getStatus());
         bookOrderDAO.create(bookOrder);
         LOG.info("Order successfully created");
         return bookOrder;

@@ -158,7 +158,7 @@ public class BookOrderDAOImpl implements BookOrderDAO {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_ORDER);
             preparedStatement.setInt(1, bookOrder.getId());
-            preparedStatement.setDate(2, bookOrder.getDateOfCreation());
+            preparedStatement.setTimestamp(2, bookOrder.getDateOfCreation());
             preparedStatement.setInt(3, bookOrder.getOrderedBy());
             preparedStatement.setString(4, bookOrder.getBookOrderStatus());
             preparedStatement.executeUpdate();
@@ -194,24 +194,6 @@ public class BookOrderDAOImpl implements BookOrderDAO {
             e.printStackTrace();
         }
     }
-//
-//    @Override
-//    public void update(int id, BookOrder bookOrder) {
-//        Connection connection = DataSource.getConnection();
-//        try {
-//            PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_ORDER);
-//            preparedStatement.setDate(1, bookOrder.getDateOfCreation());
-//            preparedStatement.setInt(2, bookOrder.getOrderedBy());
-//            preparedStatement.setInt(3, bookOrder.getVerifiedBy());
-//            preparedStatement.setDate(4, bookOrder.getOrderCompleteDate());
-//            preparedStatement.setString(5, bookOrder.getBookOrderStatus());
-//            preparedStatement.setInt(6, id);
-//            preparedStatement.executeUpdate();
-//            CloseUtil.customClose(connection, preparedStatement);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     @Override
     public void update(int id, BookOrder bookOrder) {
@@ -219,7 +201,7 @@ public class BookOrderDAOImpl implements BookOrderDAO {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_ORDER);
             preparedStatement.setInt(1, bookOrder.getVerifiedBy());
-            preparedStatement.setDate(2, bookOrder.getOrderCompleteDate());
+            preparedStatement.setTimestamp(2, bookOrder.getOrderCompleteDate());
             preparedStatement.setString(3, bookOrder.getBookOrderStatus());
             preparedStatement.setInt(4, id);
             preparedStatement.executeUpdate();
@@ -233,10 +215,10 @@ public class BookOrderDAOImpl implements BookOrderDAO {
         BookOrder bookOrder = new BookOrder();
         try {
             bookOrder.setId(resultSet.getInt("id"));
-            bookOrder.setDateOfCreation(resultSet.getDate("date_of_creation"));
+            bookOrder.setDateOfCreation(resultSet.getTimestamp("date_of_creation"));
             bookOrder.setOrderedBy(resultSet.getInt("ordered_by"));
             bookOrder.setVerifiedBy(resultSet.getInt("verified_by"));
-            bookOrder.setOrderCompleteDate(resultSet.getDate("order_complete_date"));
+            bookOrder.setOrderCompleteDate(resultSet.getTimestamp("order_complete_date"));
             bookOrder.setBookOrderStatus(resultSet.getString("order_status"));
         } catch (SQLException e) {
             e.printStackTrace();

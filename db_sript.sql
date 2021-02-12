@@ -36,33 +36,34 @@ create table if not exists user_bank_account
 create table if not exists book
 (
     id              int primary key auto_increment,
-    name            varchar(20) not null,
-    author          varchar(50) not null,
+    name            varchar(200) not null,
+    author          varchar(200) not null,
     date_of_writing date        not null,
     price           double      not null,
-    price_per_day   double      not null,
+    price_per_day   double,
     quantity        int         not null,
     preview         mediumtext,
-    genre           varchar(20) not null
+    genre           varchar(200) not null
     );
 
 create table if not exists book_order_status
 (
-    order_status varchar(20) primary key
+    order_status varchar(30) primary key
     );
 insert into book_order_status(order_status)
-values ('Completed'),
-       ('Failed');
+values ('Awaiting confirmation'),
+       ('In progress'),
+       ('Completed');
 
 
 create table if not exists book_order
 (
     id                  int primary key auto_increment,
-    date_of_creation    date        not null,
+    date_of_creation    datetime    not null,
     ordered_by          int         not null,
-    verified_by         int         not null,
-    order_complete_date date,
-    order_status        varchar(20) not null,
+    verified_by         int,
+    order_complete_date datetime,
+    order_status        varchar(30) not null default 'Awaiting confirmation',
 
     foreign key (ordered_by) references app_user (id) on delete cascade on update cascade,
     foreign key (verified_by) references app_user (id) on delete cascade on update cascade,

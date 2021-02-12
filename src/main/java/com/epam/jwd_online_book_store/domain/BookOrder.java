@@ -1,20 +1,22 @@
 package com.epam.jwd_online_book_store.domain;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class BookOrder {
     private int id;
-    private Date dateOfCreation;
+    private Timestamp dateOfCreation;
     private int orderedBy;
     private int verifiedBy;
-    private Date orderCompleteDate;
+    private Timestamp orderCompleteDate;
     private String bookOrderStatus;
 
     public BookOrder() {
     }
 
-    public BookOrder(Date dateOfCreation, int orderedBy, int verifiedBy, Date orderCompleteDate, String bookOrderStatus) {
+    public BookOrder(Timestamp dateOfCreation, int orderedBy, int verifiedBy, Timestamp orderCompleteDate, String bookOrderStatus) {
         this.dateOfCreation = dateOfCreation;
         this.orderedBy = orderedBy;
         this.verifiedBy = verifiedBy;
@@ -22,7 +24,7 @@ public class BookOrder {
         this.bookOrderStatus = bookOrderStatus;
     }
 
-    public BookOrder(Date dateOfCreation, int orderedBy, String bookOrderStatus) {
+    public BookOrder(Timestamp dateOfCreation, int orderedBy, String bookOrderStatus) {
         this.dateOfCreation = dateOfCreation;
         this.orderedBy = orderedBy;
         this.bookOrderStatus = bookOrderStatus;
@@ -36,11 +38,11 @@ public class BookOrder {
         this.id = id;
     }
 
-    public Date getDateOfCreation() {
+    public Timestamp getDateOfCreation() {
         return dateOfCreation;
     }
 
-    public void setDateOfCreation(Date dateOfCreation) {
+    public void setDateOfCreation(Timestamp dateOfCreation) {
         this.dateOfCreation = dateOfCreation;
     }
 
@@ -60,11 +62,11 @@ public class BookOrder {
         this.verifiedBy = verifiedBy;
     }
 
-    public Date getOrderCompleteDate() {
+    public Timestamp getOrderCompleteDate() {
         return orderCompleteDate;
     }
 
-    public void setOrderCompleteDate(Date orderCompleteDate) {
+    public void setOrderCompleteDate(Timestamp orderCompleteDate) {
         this.orderCompleteDate = orderCompleteDate;
     }
 
